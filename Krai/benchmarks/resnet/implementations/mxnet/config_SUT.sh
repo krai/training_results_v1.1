@@ -2,12 +2,12 @@ source $(dirname ${BASH_SOURCE[0]})/config_SUT_common.sh
 
 ## DL params -- 4k
 export OPTIMIZER="sgdwfastlars"
-export BATCHSIZE="32"
+export BATCHSIZE="64"
 export KVSTORE="horovod"
 export LR="10.5"
-export WARMUP_EPOCHS="0"
-export EVAL_OFFSET="0" # Targeting epoch no. 35
-export EVAL_PERIOD="1"
+export WARMUP_EPOCHS="2"
+export EVAL_OFFSET="2" # Targeting epoch no. 35
+export EVAL_PERIOD="4"
 export WD="5.0e-05"
 export MOM="0.9"
 export LARSETA="0.001"

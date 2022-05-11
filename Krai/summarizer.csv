@@ -1,0 +1,2 @@
+division,availability,submitter,system,host_processor_model_name,host_processors_count,accelerator_model_name,accelerators_count,framework,bert,dlrm,maskrcnn,minigo,resnet,ssd,rnnt,unet3d,details_url,code_url
+closed,None,NVIDIA,dgxa100_n128_ngc21.09_mxnet,AMD EPYC 7742,256,NVIDIA A100-SXM4-80GB (400W),1024,MxNet NVIDIA Release 21.09,,,,,0.5746833333333333,0.4542,,,https://github.com/mlcommons/training_results_v1.1/blob/master/NVIDIA/systems/dgxa100_n128_ngc21.09_mxnet.json,https://github.com/mlcommons/training_results_v1.1/blob/master/NVIDIA/benchmarks
