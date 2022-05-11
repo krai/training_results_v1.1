@@ -1,0 +1,1288 @@
++ echo 'Beginning trial 1 of 5'
+Beginning trial 1 of 5
++ docker exec -it image_classification python -c '
+import mlperf_log_utils
+from mlperf_logging.mllog import constants
+
+mlperf_log_utils.mlperf_submission_log(constants.RESNET)'
+:::MLLOG {"namespace": "", "time_ms": 1652263414867, "event_type": "POINT_IN_TIME", "key": "submission_benchmark", "value": "resnet", "metadata": {"file": "/workspace/image_classification/mlperf_log_utils.py", "lineno": 70}}
+:::MLLOG {"namespace": "", "time_ms": 1652263414873, "event_type": "POINT_IN_TIME", "key": "submission_org", "value": "NVIDIA", "metadata": {"file": "/workspace/image_classification/mlperf_log_utils.py", "lineno": 75}}
+:::MLLOG {"namespace": "", "time_ms": 1652263414874, "event_type": "POINT_IN_TIME", "key": "submission_division", "value": "closed", "metadata": {"file": "/workspace/image_classification/mlperf_log_utils.py", "lineno": 79}}
+:::MLLOG {"namespace": "", "time_ms": 1652263414874, "event_type": "POINT_IN_TIME", "key": "submission_status", "value": "onprem", "metadata": {"file": "/workspace/image_classification/mlperf_log_utils.py", "lineno": 83}}
+:::MLLOG {"namespace": "", "time_ms": 1652263414874, "event_type": "POINT_IN_TIME", "key": "submission_platform", "value": "1xSUBMISSION_PLATFORM_PLACEHOLDER", "metadata": {"file": "/workspace/image_classification/mlperf_log_utils.py", "lineno": 87}}
++ '[' 1 -eq 1 ']'
++ sync
++ sudo /sbin/sysctl vm.drop_caches=3
+vm.drop_caches = 3
++ docker exec -it image_classification python -c '
+import mlperf_log_utils
+from mlperf_logging.mllog import constants
+
+mlperf_log_utils.mx_resnet_print_event(key=constants.CACHE_CLEAR, val=True)'
+:::MLLOG {"namespace": "", "time_ms": 1652263428135, "event_type": "POINT_IN_TIME", "key": "cache_clear", "value": true, "metadata": {"file": "<string>", "lineno": 5}}
++ export SEED=6921
++ SEED=6921
++ docker exec -it --env=BATCHSIZE --env=DALI_CACHE_SIZE --env=DALI_CROP_BUFFER_HINT --env=DALI_DECODER_BUFFER_HINT --env=DALI_DONT_USE_MMAP --env=DALI_HW_DECODER_LOAD --env=DALI_NORMALIZE_BUFFER_HINT --env=DALI_NVJPEG_MEMPADDING --env=DALI_PREALLOCATE_HEIGHT --env=DALI_PREALLOCATE_WIDTH --env=DALI_PREFETCH_QUEUE --env=DALI_THREADS --env=DALI_TMP_BUFFER_HINT --env=DGXHT --env=DGXNGPU --env=DGXNNODES --env=DGXNSOCKET --env=DGXSOCKETCORES --env=DGXSYSTEM --env=EVAL_OFFSET --env=EVAL_PERIOD --env=HOROVOD_CYCLE_TIME --env=HOROVOD_FUSION_THRESHOLD --env=HOROVOD_NUM_NCCL_STREAMS --env=KVSTORE --env=LABELSMOOTHING --env=LARSETA --env=LR --env=LRSCHED --env=MOM --env=MXNET_CUDNN_NHWC_BN_ADD_HEURISTIC_BWD --env=MXNET_CUDNN_NHWC_BN_ADD_HEURISTIC_FWD --env=MXNET_CUDNN_NHWC_BN_HEURISTIC_BWD --env=MXNET_CUDNN_NHWC_BN_HEURISTIC_FWD --env=MXNET_CUDNN_WARN_ON_IGNORED_FLAGS --env=MXNET_ENABLE_CUDA_GRAPHS --env=MXNET_EXEC_BULK_EXEC_MAX_NODE_TRAIN_BWD --env=MXNET_EXEC_BULK_EXEC_MAX_NODE_TRAIN_FWD --env=MXNET_EXTENDED_NORMCONV_SUPPORT --env=MXNET_HOROVOD_NUM_GROUPS --env=MXNET_OPTIMIZER_AGGREGATION_SIZE --env=NETWORK --env=NUMEPOCHS --env=OMPI_MCA_btl --env=OPTIMIZER --env=RUN_NCCL_BW_TEST --env=WALLTIME --env=WARMUP_EPOCHS --env=WD --env=MLPERF_HOST_OS --env=SEED image_classification ./run_and_time.sh
+STARTING TIMING RUN AT 2022-05-11 10:03:48 AM
+running benchmark
+num_gpus=2 num_sockets = 1 num_nodes=1 cores_per_socket=24
+num_gpus=2 num_sockets = 1 num_nodes=1 cores_per_socket=24
+:::MLLOG {"namespace": "", "time_ms": 1652263430316, "event_type": "INTERVAL_START", "key": "init_start", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 120}}
+:::MLLOG {"namespace": "", "time_ms": 1652263430316, "event_type": "INTERVAL_START", "key": "init_start", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 120}}
+[10:03:53] ../src/storage/storage.cc:199: Using Pooled (Naive) StorageManager for GPU
+:::MLLOG {"namespace": "", "time_ms": 1652263433212, "event_type": "POINT_IN_TIME", "key": "seed", "value": 6921, "metadata": {"file": "train_imagenet.py", "lineno": 176}}
+[10:03:53] ../src/storage/storage.cc:199: Using Pooled (Naive) StorageManager for GPU
+NCCL version 2.11.4+cuda11.4
+:::MLLOG {"namespace": "", "time_ms": 1652263433558, "event_type": "POINT_IN_TIME", "key": "model_bn_span", "value": 64, "metadata": {"file": "/workspace/image_classification/common/dali.py", "lineno": 309}}
+[10:03:55] ../src/storage/storage.cc:199: Using Pooled (Naive) StorageManager for CPU
+[10:03:55] ../src/storage/storage.cc:199: Using Pooled (Naive) StorageManager for CPU
+:::MLLOG {"namespace": "", "time_ms": 1652263435848, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "bn0_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435849, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "bn0_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435849, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "conv0_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435849, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 81, "tensor": "fc1_bias"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435850, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 72, "tensor": "fc1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435850, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage1_unit1_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435850, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage1_unit1_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435851, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage1_unit1_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435851, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage1_unit1_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435852, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage1_unit1_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435852, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage1_unit1_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435852, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage1_unit1_bn_sc_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435853, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage1_unit1_bn_sc_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435853, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage1_unit1_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435853, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage1_unit1_conv1sc_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435853, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage1_unit1_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435854, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage1_unit1_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435854, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage1_unit2_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435854, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage1_unit2_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435855, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage1_unit2_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435855, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage1_unit2_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435855, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage1_unit2_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435856, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage1_unit2_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435856, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage1_unit2_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435856, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage1_unit2_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435857, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage1_unit2_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435857, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage1_unit3_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435857, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage1_unit3_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435858, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage1_unit3_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435858, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage1_unit3_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435858, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage1_unit3_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435859, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage1_unit3_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435859, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage1_unit3_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435859, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage1_unit3_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435860, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage1_unit3_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435860, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit1_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435860, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit1_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435861, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit1_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435861, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit1_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435861, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit1_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435861, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit1_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435862, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit1_bn_sc_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435862, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit1_bn_sc_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435862, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit1_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435862, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit1_conv1sc_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435863, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit1_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435863, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit1_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435863, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit2_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435863, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit2_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435864, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit2_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435864, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit2_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435864, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit2_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435864, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit2_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435865, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit2_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435865, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit2_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435865, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit2_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435865, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit3_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435866, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit3_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435866, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit3_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435866, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit3_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435866, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit3_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435867, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit3_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435867, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit3_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435867, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit3_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435867, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit3_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435868, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit4_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435868, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit4_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435868, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit4_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435869, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit4_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435869, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage2_unit4_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435869, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage2_unit4_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435869, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit4_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435870, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit4_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435870, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage2_unit4_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435870, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit1_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435870, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit1_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435871, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit1_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435871, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit1_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435871, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit1_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435871, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit1_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435872, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit1_bn_sc_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435872, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit1_bn_sc_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435872, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit1_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435872, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit1_conv1sc_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435873, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit1_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435873, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit1_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435873, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit2_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435873, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit2_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435874, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit2_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435874, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit2_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435874, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit2_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435874, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit2_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435875, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit2_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435875, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit2_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435875, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit2_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435875, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit3_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435876, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit3_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435876, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit3_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435876, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit3_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435876, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit3_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435877, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit3_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435877, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit3_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435877, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit3_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435877, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit3_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435878, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit4_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435878, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit4_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435878, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit4_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435878, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit4_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435879, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit4_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435879, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit4_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435879, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit4_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435879, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit4_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435880, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit4_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435880, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit5_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435880, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit5_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435881, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit5_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435881, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit5_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435881, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit5_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435881, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit5_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435882, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit5_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435882, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit5_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435882, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit5_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435882, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit6_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435883, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit6_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435883, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit6_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435883, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit6_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435883, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage3_unit6_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435884, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage3_unit6_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435884, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit6_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435884, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit6_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435884, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage3_unit6_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435885, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage4_unit1_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435885, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage4_unit1_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435885, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage4_unit1_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435885, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage4_unit1_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435886, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage4_unit1_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435886, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage4_unit1_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435886, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage4_unit1_bn_sc_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435887, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage4_unit1_bn_sc_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435887, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage4_unit1_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435887, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage4_unit1_conv1sc_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435887, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage4_unit1_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435887, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage4_unit1_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435888, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage4_unit2_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435888, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage4_unit2_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435888, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage4_unit2_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435889, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage4_unit2_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435889, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage4_unit2_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435889, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage4_unit2_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435889, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage4_unit2_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435890, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage4_unit2_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435890, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage4_unit2_conv3_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435890, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage4_unit3_bn1_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435890, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage4_unit3_bn1_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435891, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage4_unit3_bn2_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435891, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage4_unit3_bn2_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435891, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 91, "tensor": "stage4_unit3_bn3_beta"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435891, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 86, "tensor": "stage4_unit3_bn3_gamma"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435892, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage4_unit3_conv1_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435892, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage4_unit3_conv2_weight"}}
+:::MLLOG {"namespace": "", "time_ms": 1652263435892, "event_type": "POINT_IN_TIME", "key": "weights_initialization", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 76, "tensor": "stage4_unit3_conv3_weight"}}
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:627: DeprecationWarning: WARNING: `coin_flip` is now deprecated. Use `random.coin_flip` instead.
+  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:627: DeprecationWarning: WARNING: `mxnet_reader` is now deprecated. Use `readers.mxnet` instead.
+In DALI 1.0 all readers were moved into a dedicated :mod:`~nvidia.dali.fn.readers`
+submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+functionality to allow for backward compatibility.
+  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:627: DeprecationWarning: WARNING: `image_decoder` is now deprecated. Use `decoders.image` instead.
+In DALI 1.0 all decoders were moved into a dedicated :mod:`~nvidia.dali.fn.decoders`
+submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+functionality to allow for backward compatibility.
+  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:627: DeprecationWarning: WARNING: `mxnet_reader` is now deprecated. Use `readers.mxnet` instead.
+In DALI 1.0 all readers were moved into a dedicated :mod:`~nvidia.dali.fn.readers`
+submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+functionality to allow for backward compatibility.
+  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:627: DeprecationWarning: WARNING: `image_decoder` is now deprecated. Use `decoders.image` instead.
+In DALI 1.0 all decoders were moved into a dedicated :mod:`~nvidia.dali.fn.decoders`
+submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+functionality to allow for backward compatibility.
+  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+2022-05-11 10:03:57,139 Node[1] start with arguments Namespace(accuracy_threshold=0.759, batch_size=64, batchnorm_eps=1e-05, batchnorm_layout='NHWC', batchnorm_mom=0.9, bn_gamma_init0=False, bn_group=1, conv_algo=1, conv_layout='NHWC', custom_bn_off=0, dali_bytes_per_sample_hint=10485760, dali_cache_size=12288, dali_crop_buffer_hint=165581, dali_decoder_buffer_hint=1315942, dali_dont_use_mmap=0, dali_hw_decoder_load=0.7, dali_normalize_buffer_hint=441549, dali_nvjpeg_memory_padding=256, dali_preallocate_height=6430, dali_preallocate_width=5980, dali_prefetch_queue=3, dali_roi_decode=False, dali_threads=6, dali_tmp_buffer_hint=355568328, data_train='/data/train.rec', data_train_idx='/data/train.idx', data_val='/data/val.rec', data_val_idx='/data/val.idx', disp_batches=20, dtype='float16', e2e_cuda_graphs=0, epoch_size=0, eval_offset=2, eval_period=4, force_tensor_core=1, fuse_bn_add_relu=1, fuse_bn_relu=1, gpus='1', image_shape='4,224,224', initializer='default', input_batch_multiplier=1, input_layout='NHWC', kv_store='horovod', label_smoothing=0.1, lars_eps=0, lars_eta=0.001, lazy_init_sanity=False, local_rank=1, log='', logging_dir='logs', lr=10.5, lr_factor=0.1, lr_step_epochs='pow2', max_random_area=1.0, max_random_aspect_ratio=1.3333333333333333, min_random_area=0.05, min_random_aspect_ratio=0.75, model_prefix=None, mom=0.9, network='resnet-v1b-fl', num_classes=1000, num_epochs=2, num_examples=1281167, num_layers=50, num_val_examples=-1, optimizer='sgdwfastlars', pooling_layout='NHWC', profile=0, profile_server_suffix='', profile_worker_suffix='', resize=256, save_period=1, seed=43799, separ_val=False, top_k=0, use_dali=True, verbose=0, warmup_epochs=1, warmup_strategy='linear', wd=5e-05)
+:::MLLOG {"namespace": "", "time_ms": 1652263437139, "event_type": "INTERVAL_END", "key": "init_stop", "value": null, "metadata": {"file": "train_imagenet.py", "lineno": 233}}
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:627: DeprecationWarning: WARNING: `coin_flip` is now deprecated. Use `random.coin_flip` instead.
+  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:627: DeprecationWarning: WARNING: `mxnet_reader` is now deprecated. Use `readers.mxnet` instead.
+In DALI 1.0 all readers were moved into a dedicated :mod:`~nvidia.dali.fn.readers`
+submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+functionality to allow for backward compatibility.
+  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:627: DeprecationWarning: WARNING: `image_decoder` is now deprecated. Use `decoders.image` instead.
+In DALI 1.0 all decoders were moved into a dedicated :mod:`~nvidia.dali.fn.decoders`
+submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+functionality to allow for backward compatibility.
+  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:627: DeprecationWarning: WARNING: `mxnet_reader` is now deprecated. Use `readers.mxnet` instead.
+In DALI 1.0 all readers were moved into a dedicated :mod:`~nvidia.dali.fn.readers`
+submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+functionality to allow for backward compatibility.
+  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:627: DeprecationWarning: WARNING: `image_decoder` is now deprecated. Use `decoders.image` instead.
+In DALI 1.0 all decoders were moved into a dedicated :mod:`~nvidia.dali.fn.decoders`
+submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+functionality to allow for backward compatibility.
+  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+2022-05-11 10:03:57,139 Node[0] start with arguments Namespace(accuracy_threshold=0.759, batch_size=64, batchnorm_eps=1e-05, batchnorm_layout='NHWC', batchnorm_mom=0.9, bn_gamma_init0=False, bn_group=1, conv_algo=1, conv_layout='NHWC', custom_bn_off=0, dali_bytes_per_sample_hint=10485760, dali_cache_size=12288, dali_crop_buffer_hint=165581, dali_decoder_buffer_hint=1315942, dali_dont_use_mmap=0, dali_hw_decoder_load=0.7, dali_normalize_buffer_hint=441549, dali_nvjpeg_memory_padding=256, dali_preallocate_height=6430, dali_preallocate_width=5980, dali_prefetch_queue=3, dali_roi_decode=False, dali_threads=6, dali_tmp_buffer_hint=355568328, data_train='/data/train.rec', data_train_idx='/data/train.idx', data_val='/data/val.rec', data_val_idx='/data/val.idx', disp_batches=20, dtype='float16', e2e_cuda_graphs=0, epoch_size=0, eval_offset=2, eval_period=4, force_tensor_core=1, fuse_bn_add_relu=1, fuse_bn_relu=1, gpus='0', image_shape='4,224,224', initializer='default', input_batch_multiplier=1, input_layout='NHWC', kv_store='horovod', label_smoothing=0.1, lars_eps=0, lars_eta=0.001, lazy_init_sanity=False, local_rank=0, log='', logging_dir='logs', lr=10.5, lr_factor=0.1, lr_step_epochs='pow2', max_random_area=1.0, max_random_aspect_ratio=1.3333333333333333, min_random_area=0.05, min_random_aspect_ratio=0.75, model_prefix=None, mom=0.9, network='resnet-v1b-fl', num_classes=1000, num_epochs=2, num_examples=1281167, num_layers=50, num_val_examples=-1, optimizer='sgdwfastlars', pooling_layout='NHWC', profile=0, profile_server_suffix='', profile_worker_suffix='', resize=256, save_period=1, seed=10871, separ_val=False, top_k=0, use_dali=True, verbose=0, warmup_epochs=1, warmup_strategy='linear', wd=5e-05)
+:::MLLOG {"namespace": "", "time_ms": 1652263437140, "event_type": "POINT_IN_TIME", "key": "sgd_opt_learning_rate_decay_poly_power", "value": 2, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 711}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437140, "event_type": "POINT_IN_TIME", "key": "sgd_opt_end_learning_rate", "value": 0.0001, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 712}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437140, "event_type": "POINT_IN_TIME", "key": "lars_opt_learning_rate_decay_poly_power", "value": 2, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 713}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437140, "event_type": "POINT_IN_TIME", "key": "lars_opt_end_learning_rate", "value": 0.0001, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 714}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437140, "event_type": "POINT_IN_TIME", "key": "d_batch_size", "value": 64, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1170}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437140, "event_type": "POINT_IN_TIME", "key": "s_optimizer", "value": "sgdwfastlars", "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1171}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437140, "event_type": "POINT_IN_TIME", "key": "s_network", "value": "resnet-v1b-fl", "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1172}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437140, "event_type": "POINT_IN_TIME", "key": "s_process", "value": "horovod", "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1173}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437140, "event_type": "POINT_IN_TIME", "key": "global_batch_size", "value": 128, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1174}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437141, "event_type": "POINT_IN_TIME", "key": "s_optimizer", "value": "sgdwfastlars", "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1175}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437141, "event_type": "POINT_IN_TIME", "key": "s_network", "value": "resnet-v1b-fl", "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1176}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437141, "event_type": "POINT_IN_TIME", "key": "s_process", "value": "horovod", "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1177}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437141, "event_type": "POINT_IN_TIME", "key": "gradient_accumulation_steps", "value": 1, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1178}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437141, "event_type": "POINT_IN_TIME", "key": "opt_name", "value": "lars", "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1184}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437141, "event_type": "POINT_IN_TIME", "key": "lars_epsilon", "value": 0, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1186}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437141, "event_type": "POINT_IN_TIME", "key": "lars_opt_weight_decay", "value": 5e-05, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1188}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437141, "event_type": "POINT_IN_TIME", "key": "lars_opt_momentum", "value": 0.9, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1190}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437141, "event_type": "POINT_IN_TIME", "key": "lars_opt_base_learning_rate", "value": 10.5, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1191}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437141, "event_type": "POINT_IN_TIME", "key": "lars_opt_learning_rate_warmup_epochs", "value": 1, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1192}}
+:::MLLOG {"namespace": "", "time_ms": 1652263437141, "event_type": "POINT_IN_TIME", "key": "lars_opt_learning_rate_decay_steps", "value": 2, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1193}}
+[10:04:11] ../src/storage/storage.cc:199: Using Pooled (Naive) StorageManager for GPU
+:::MLLOG {"namespace": "", "time_ms": 1652263453106, "event_type": "INTERVAL_START", "key": "run_start", "value": null, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1340}}
+:::MLLOG {"namespace": "", "time_ms": 1652263453106, "event_type": "POINT_IN_TIME", "key": "train_samples", "value": 1281167, "metadata": {"file": "/workspace/image_classification/common/dali.py", "lineno": 486}}
+:::MLLOG {"namespace": "", "time_ms": 1652263453377, "event_type": "POINT_IN_TIME", "key": "eval_samples", "value": 50000, "metadata": {"file": "/workspace/image_classification/common/dali.py", "lineno": 508}}
+:::MLLOG {"namespace": "", "time_ms": 1652263453377, "event_type": "INTERVAL_START", "key": "block_start", "value": null, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 903, "first_epoch_num": 1, "epoch_count": 3}}
+:::MLLOG {"namespace": "", "time_ms": 1652263453378, "event_type": "INTERVAL_START", "key": "epoch_start", "value": null, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 913, "epoch_num": 1}}
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/plugin/mxnet.py:85: Warning: Please do not use `fill_last_batch` and use `last_batch_policy` instead.
+  _DaliBaseIterator.__init__(self,
+2022-05-11 10:04:14,587 Node[0] Epoch[0] Batch [0-20]	Speed: 2321.68 samples/sec	accuracy=0.000744
+2022-05-11 10:04:15,686 Node[0] Epoch[0] Batch [20-40]	Speed: 2329.41 samples/sec	accuracy=0.002344
+2022-05-11 10:04:16,783 Node[0] Epoch[0] Batch [40-60]	Speed: 2334.60 samples/sec	accuracy=0.000000
+2022-05-11 10:04:17,879 Node[0] Epoch[0] Batch [60-80]	Speed: 2333.78 samples/sec	accuracy=0.003906
+2022-05-11 10:04:18,972 Node[0] Epoch[0] Batch [80-100]	Speed: 2342.90 samples/sec	accuracy=0.002344
+2022-05-11 10:04:20,070 Node[0] Epoch[0] Batch [100-120]	Speed: 2332.03 samples/sec	accuracy=0.001563
+2022-05-11 10:04:21,169 Node[0] Epoch[0] Batch [120-140]	Speed: 2328.32 samples/sec	accuracy=0.001563
+2022-05-11 10:04:22,265 Node[0] Epoch[0] Batch [140-160]	Speed: 2335.96 samples/sec	accuracy=0.000781
+2022-05-11 10:04:23,361 Node[0] Epoch[0] Batch [160-180]	Speed: 2336.89 samples/sec	accuracy=0.000000
+2022-05-11 10:04:24,454 Node[0] Epoch[0] Batch [180-200]	Speed: 2341.40 samples/sec	accuracy=0.002344
+2022-05-11 10:04:25,548 Node[0] Epoch[0] Batch [200-220]	Speed: 2339.93 samples/sec	accuracy=0.001563
+2022-05-11 10:04:26,640 Node[0] Epoch[0] Batch [220-240]	Speed: 2343.59 samples/sec	accuracy=0.002344
+2022-05-11 10:04:27,747 Node[0] Epoch[0] Batch [240-260]	Speed: 2314.33 samples/sec	accuracy=0.004687
+2022-05-11 10:04:28,844 Node[0] Epoch[0] Batch [260-280]	Speed: 2332.15 samples/sec	accuracy=0.002344
+2022-05-11 10:04:29,951 Node[0] Epoch[0] Batch [280-300]	Speed: 2314.04 samples/sec	accuracy=0.003906
+2022-05-11 10:04:31,052 Node[0] Epoch[0] Batch [300-320]	Speed: 2324.51 samples/sec	accuracy=0.003125
+2022-05-11 10:04:32,158 Node[0] Epoch[0] Batch [320-340]	Speed: 2314.21 samples/sec	accuracy=0.002344
+2022-05-11 10:04:33,261 Node[0] Epoch[0] Batch [340-360]	Speed: 2322.38 samples/sec	accuracy=0.002344
+2022-05-11 10:04:34,364 Node[0] Epoch[0] Batch [360-380]	Speed: 2320.15 samples/sec	accuracy=0.005469
+2022-05-11 10:04:35,467 Node[0] Epoch[0] Batch [380-400]	Speed: 2320.73 samples/sec	accuracy=0.005469
+2022-05-11 10:04:36,571 Node[0] Epoch[0] Batch [400-420]	Speed: 2319.73 samples/sec	accuracy=0.003125
+2022-05-11 10:04:37,674 Node[0] Epoch[0] Batch [420-440]	Speed: 2320.90 samples/sec	accuracy=0.004687
+2022-05-11 10:04:38,776 Node[0] Epoch[0] Batch [440-460]	Speed: 2322.22 samples/sec	accuracy=0.002344
+2022-05-11 10:04:39,875 Node[0] Epoch[0] Batch [460-480]	Speed: 2329.50 samples/sec	accuracy=0.007812
+2022-05-11 10:04:40,980 Node[0] Epoch[0] Batch [480-500]	Speed: 2316.39 samples/sec	accuracy=0.004687
+2022-05-11 10:04:42,086 Node[0] Epoch[0] Batch [500-520]	Speed: 2315.25 samples/sec	accuracy=0.005469
+2022-05-11 10:04:43,193 Node[0] Epoch[0] Batch [520-540]	Speed: 2312.58 samples/sec	accuracy=0.004687
+2022-05-11 10:04:44,286 Node[0] Epoch[0] Batch [540-560]	Speed: 2340.83 samples/sec	accuracy=0.005469
+2022-05-11 10:04:45,381 Node[0] Epoch[0] Batch [560-580]	Speed: 2337.84 samples/sec	accuracy=0.002344
+2022-05-11 10:04:46,480 Node[0] Epoch[0] Batch [580-600]	Speed: 2329.84 samples/sec	accuracy=0.006250
+2022-05-11 10:04:47,583 Node[0] Epoch[0] Batch [600-620]	Speed: 2320.99 samples/sec	accuracy=0.004687
+2022-05-11 10:04:48,686 Node[0] Epoch[0] Batch [620-640]	Speed: 2320.76 samples/sec	accuracy=0.006250
+2022-05-11 10:04:49,792 Node[0] Epoch[0] Batch [640-660]	Speed: 2314.98 samples/sec	accuracy=0.006250
+2022-05-11 10:04:50,895 Node[0] Epoch[0] Batch [660-680]	Speed: 2320.48 samples/sec	accuracy=0.007812
+2022-05-11 10:04:52,001 Node[0] Epoch[0] Batch [680-700]	Speed: 2314.37 samples/sec	accuracy=0.006250
+2022-05-11 10:04:53,106 Node[0] Epoch[0] Batch [700-720]	Speed: 2317.66 samples/sec	accuracy=0.007031
+2022-05-11 10:04:54,214 Node[0] Epoch[0] Batch [720-740]	Speed: 2311.03 samples/sec	accuracy=0.008594
+2022-05-11 10:04:55,321 Node[0] Epoch[0] Batch [740-760]	Speed: 2311.56 samples/sec	accuracy=0.002344
+2022-05-11 10:04:56,430 Node[0] Epoch[0] Batch [760-780]	Speed: 2309.26 samples/sec	accuracy=0.008594
+2022-05-11 10:04:57,544 Node[0] Epoch[0] Batch [780-800]	Speed: 2297.54 samples/sec	accuracy=0.008594
+2022-05-11 10:04:58,654 Node[0] Epoch[0] Batch [800-820]	Speed: 2306.52 samples/sec	accuracy=0.008594
+2022-05-11 10:04:59,762 Node[0] Epoch[0] Batch [820-840]	Speed: 2309.48 samples/sec	accuracy=0.007031
+2022-05-11 10:05:00,878 Node[0] Epoch[0] Batch [840-860]	Speed: 2295.06 samples/sec	accuracy=0.013281
+2022-05-11 10:05:01,989 Node[0] Epoch[0] Batch [860-880]	Speed: 2304.17 samples/sec	accuracy=0.008594
+2022-05-11 10:05:03,101 Node[0] Epoch[0] Batch [880-900]	Speed: 2301.31 samples/sec	accuracy=0.007812
+2022-05-11 10:05:04,213 Node[0] Epoch[0] Batch [900-920]	Speed: 2302.21 samples/sec	accuracy=0.009375
+2022-05-11 10:05:05,326 Node[0] Epoch[0] Batch [920-940]	Speed: 2301.45 samples/sec	accuracy=0.011719
+2022-05-11 10:05:06,438 Node[0] Epoch[0] Batch [940-960]	Speed: 2301.08 samples/sec	accuracy=0.007812
+2022-05-11 10:05:07,552 Node[0] Epoch[0] Batch [960-980]	Speed: 2298.28 samples/sec	accuracy=0.014063
+2022-05-11 10:05:08,663 Node[0] Epoch[0] Batch [980-1000]	Speed: 2304.57 samples/sec	accuracy=0.013281
+2022-05-11 10:05:09,776 Node[0] Epoch[0] Batch [1000-1020]	Speed: 2299.29 samples/sec	accuracy=0.010156
+2022-05-11 10:05:10,892 Node[0] Epoch[0] Batch [1020-1040]	Speed: 2294.56 samples/sec	accuracy=0.010937
+2022-05-11 10:05:12,007 Node[0] Epoch[0] Batch [1040-1060]	Speed: 2295.65 samples/sec	accuracy=0.011719
+2022-05-11 10:05:13,123 Node[0] Epoch[0] Batch [1060-1080]	Speed: 2293.27 samples/sec	accuracy=0.014063
+2022-05-11 10:05:14,240 Node[0] Epoch[0] Batch [1080-1100]	Speed: 2293.49 samples/sec	accuracy=0.014063
+2022-05-11 10:05:15,356 Node[0] Epoch[0] Batch [1100-1120]	Speed: 2293.09 samples/sec	accuracy=0.014063
+2022-05-11 10:05:16,473 Node[0] Epoch[0] Batch [1120-1140]	Speed: 2291.25 samples/sec	accuracy=0.011719
+2022-05-11 10:05:17,594 Node[0] Epoch[0] Batch [1140-1160]	Speed: 2284.24 samples/sec	accuracy=0.015625
+2022-05-11 10:05:18,715 Node[0] Epoch[0] Batch [1160-1180]	Speed: 2284.17 samples/sec	accuracy=0.010156
+2022-05-11 10:05:19,835 Node[0] Epoch[0] Batch [1180-1200]	Speed: 2284.38 samples/sec	accuracy=0.009375
+2022-05-11 10:05:20,956 Node[0] Epoch[0] Batch [1200-1220]	Speed: 2284.39 samples/sec	accuracy=0.014063
+2022-05-11 10:05:22,079 Node[0] Epoch[0] Batch [1220-1240]	Speed: 2279.18 samples/sec	accuracy=0.008594
+2022-05-11 10:05:23,201 Node[0] Epoch[0] Batch [1240-1260]	Speed: 2281.71 samples/sec	accuracy=0.021875
+2022-05-11 10:05:24,324 Node[0] Epoch[0] Batch [1260-1280]	Speed: 2280.93 samples/sec	accuracy=0.017188
+2022-05-11 10:05:25,445 Node[0] Epoch[0] Batch [1280-1300]	Speed: 2282.31 samples/sec	accuracy=0.010937
+2022-05-11 10:05:26,566 Node[0] Epoch[0] Batch [1300-1320]	Speed: 2285.17 samples/sec	accuracy=0.017188
+2022-05-11 10:05:27,686 Node[0] Epoch[0] Batch [1320-1340]	Speed: 2284.74 samples/sec	accuracy=0.021094
+2022-05-11 10:05:28,811 Node[0] Epoch[0] Batch [1340-1360]	Speed: 2276.18 samples/sec	accuracy=0.019531
+2022-05-11 10:05:29,933 Node[0] Epoch[0] Batch [1360-1380]	Speed: 2280.56 samples/sec	accuracy=0.020313
+2022-05-11 10:05:31,056 Node[0] Epoch[0] Batch [1380-1400]	Speed: 2279.59 samples/sec	accuracy=0.014063
+2022-05-11 10:05:32,182 Node[0] Epoch[0] Batch [1400-1420]	Speed: 2274.98 samples/sec	accuracy=0.021875
+2022-05-11 10:05:33,309 Node[0] Epoch[0] Batch [1420-1440]	Speed: 2270.28 samples/sec	accuracy=0.020313
+2022-05-11 10:05:34,438 Node[0] Epoch[0] Batch [1440-1460]	Speed: 2267.94 samples/sec	accuracy=0.017188
+2022-05-11 10:05:35,564 Node[0] Epoch[0] Batch [1460-1480]	Speed: 2273.41 samples/sec	accuracy=0.017969
+2022-05-11 10:05:36,690 Node[0] Epoch[0] Batch [1480-1500]	Speed: 2273.57 samples/sec	accuracy=0.013281
+2022-05-11 10:05:37,817 Node[0] Epoch[0] Batch [1500-1520]	Speed: 2271.91 samples/sec	accuracy=0.017969
+2022-05-11 10:05:38,950 Node[0] Epoch[0] Batch [1520-1540]	Speed: 2258.35 samples/sec	accuracy=0.017188
+2022-05-11 10:05:40,082 Node[0] Epoch[0] Batch [1540-1560]	Speed: 2262.07 samples/sec	accuracy=0.027344
+2022-05-11 10:05:41,221 Node[0] Epoch[0] Batch [1560-1580]	Speed: 2247.89 samples/sec	accuracy=0.025000
+2022-05-11 10:05:42,359 Node[0] Epoch[0] Batch [1580-1600]	Speed: 2249.36 samples/sec	accuracy=0.022656
+2022-05-11 10:05:43,499 Node[0] Epoch[0] Batch [1600-1620]	Speed: 2246.19 samples/sec	accuracy=0.021875
+2022-05-11 10:05:44,646 Node[0] Epoch[0] Batch [1620-1640]	Speed: 2231.72 samples/sec	accuracy=0.028125
+2022-05-11 10:05:45,787 Node[0] Epoch[0] Batch [1640-1660]	Speed: 2243.79 samples/sec	accuracy=0.015625
+2022-05-11 10:05:46,934 Node[0] Epoch[0] Batch [1660-1680]	Speed: 2231.55 samples/sec	accuracy=0.017188
+2022-05-11 10:05:48,080 Node[0] Epoch[0] Batch [1680-1700]	Speed: 2234.18 samples/sec	accuracy=0.019531
+2022-05-11 10:05:49,231 Node[0] Epoch[0] Batch [1700-1720]	Speed: 2224.41 samples/sec	accuracy=0.014844
+2022-05-11 10:05:50,378 Node[0] Epoch[0] Batch [1720-1740]	Speed: 2231.19 samples/sec	accuracy=0.025781
+2022-05-11 10:05:51,530 Node[0] Epoch[0] Batch [1740-1760]	Speed: 2222.18 samples/sec	accuracy=0.021875
+2022-05-11 10:05:52,680 Node[0] Epoch[0] Batch [1760-1780]	Speed: 2226.22 samples/sec	accuracy=0.026562
+2022-05-11 10:05:53,827 Node[0] Epoch[0] Batch [1780-1800]	Speed: 2232.34 samples/sec	accuracy=0.027344
+2022-05-11 10:05:54,975 Node[0] Epoch[0] Batch [1800-1820]	Speed: 2230.20 samples/sec	accuracy=0.024219
+2022-05-11 10:05:56,126 Node[0] Epoch[0] Batch [1820-1840]	Speed: 2222.88 samples/sec	accuracy=0.019531
+2022-05-11 10:05:57,276 Node[0] Epoch[0] Batch [1840-1860]	Speed: 2227.29 samples/sec	accuracy=0.025000
+2022-05-11 10:05:58,427 Node[0] Epoch[0] Batch [1860-1880]	Speed: 2223.20 samples/sec	accuracy=0.026562
+2022-05-11 10:05:59,577 Node[0] Epoch[0] Batch [1880-1900]	Speed: 2226.50 samples/sec	accuracy=0.022656
+2022-05-11 10:06:00,728 Node[0] Epoch[0] Batch [1900-1920]	Speed: 2224.32 samples/sec	accuracy=0.020313
+2022-05-11 10:06:01,878 Node[0] Epoch[0] Batch [1920-1940]	Speed: 2225.84 samples/sec	accuracy=0.030469
+2022-05-11 10:06:03,027 Node[0] Epoch[0] Batch [1940-1960]	Speed: 2228.10 samples/sec	accuracy=0.026562
+2022-05-11 10:06:04,176 Node[0] Epoch[0] Batch [1960-1980]	Speed: 2228.51 samples/sec	accuracy=0.023438
+2022-05-11 10:06:05,323 Node[0] Epoch[0] Batch [1980-2000]	Speed: 2231.94 samples/sec	accuracy=0.019531
+2022-05-11 10:06:06,474 Node[0] Epoch[0] Batch [2000-2020]	Speed: 2224.41 samples/sec	accuracy=0.031250
+2022-05-11 10:06:07,622 Node[0] Epoch[0] Batch [2020-2040]	Speed: 2228.47 samples/sec	accuracy=0.027344
+2022-05-11 10:06:08,775 Node[0] Epoch[0] Batch [2040-2060]	Speed: 2220.36 samples/sec	accuracy=0.035156
+2022-05-11 10:06:09,917 Node[0] Epoch[0] Batch [2060-2080]	Speed: 2242.42 samples/sec	accuracy=0.030469
+2022-05-11 10:06:11,072 Node[0] Epoch[0] Batch [2080-2100]	Speed: 2216.28 samples/sec	accuracy=0.028906
+2022-05-11 10:06:12,216 Node[0] Epoch[0] Batch [2100-2120]	Speed: 2236.86 samples/sec	accuracy=0.028906
+2022-05-11 10:06:13,370 Node[0] Epoch[0] Batch [2120-2140]	Speed: 2218.79 samples/sec	accuracy=0.030469
+2022-05-11 10:06:14,518 Node[0] Epoch[0] Batch [2140-2160]	Speed: 2230.33 samples/sec	accuracy=0.028906
+2022-05-11 10:06:15,669 Node[0] Epoch[0] Batch [2160-2180]	Speed: 2224.09 samples/sec	accuracy=0.029687
+2022-05-11 10:06:16,820 Node[0] Epoch[0] Batch [2180-2200]	Speed: 2224.76 samples/sec	accuracy=0.029687
+2022-05-11 10:06:17,973 Node[0] Epoch[0] Batch [2200-2220]	Speed: 2219.27 samples/sec	accuracy=0.030469
+2022-05-11 10:06:19,122 Node[0] Epoch[0] Batch [2220-2240]	Speed: 2228.30 samples/sec	accuracy=0.031250
+2022-05-11 10:06:20,273 Node[0] Epoch[0] Batch [2240-2260]	Speed: 2225.25 samples/sec	accuracy=0.035156
+2022-05-11 10:06:21,428 Node[0] Epoch[0] Batch [2260-2280]	Speed: 2215.75 samples/sec	accuracy=0.034375
+2022-05-11 10:06:22,579 Node[0] Epoch[0] Batch [2280-2300]	Speed: 2224.56 samples/sec	accuracy=0.040625
+2022-05-11 10:06:23,724 Node[0] Epoch[0] Batch [2300-2320]	Speed: 2234.75 samples/sec	accuracy=0.034375
+2022-05-11 10:06:24,870 Node[0] Epoch[0] Batch [2320-2340]	Speed: 2234.40 samples/sec	accuracy=0.025000
+2022-05-11 10:06:26,011 Node[0] Epoch[0] Batch [2340-2360]	Speed: 2243.28 samples/sec	accuracy=0.038281
+2022-05-11 10:06:27,164 Node[0] Epoch[0] Batch [2360-2380]	Speed: 2221.02 samples/sec	accuracy=0.046094
+2022-05-11 10:06:28,311 Node[0] Epoch[0] Batch [2380-2400]	Speed: 2232.18 samples/sec	accuracy=0.028125
+2022-05-11 10:06:29,456 Node[0] Epoch[0] Batch [2400-2420]	Speed: 2235.33 samples/sec	accuracy=0.034375
+2022-05-11 10:06:30,604 Node[0] Epoch[0] Batch [2420-2440]	Speed: 2229.81 samples/sec	accuracy=0.032813
+2022-05-11 10:06:31,756 Node[0] Epoch[0] Batch [2440-2460]	Speed: 2221.93 samples/sec	accuracy=0.036719
+2022-05-11 10:06:32,911 Node[0] Epoch[0] Batch [2460-2480]	Speed: 2217.42 samples/sec	accuracy=0.042969
+2022-05-11 10:06:34,060 Node[0] Epoch[0] Batch [2480-2500]	Speed: 2227.92 samples/sec	accuracy=0.038281
+2022-05-11 10:06:35,209 Node[0] Epoch[0] Batch [2500-2520]	Speed: 2227.47 samples/sec	accuracy=0.032813
+2022-05-11 10:06:36,349 Node[0] Epoch[0] Batch [2520-2540]	Speed: 2244.63 samples/sec	accuracy=0.032031
+2022-05-11 10:06:37,491 Node[0] Epoch[0] Batch [2540-2560]	Speed: 2243.13 samples/sec	accuracy=0.031250
+2022-05-11 10:06:38,642 Node[0] Epoch[0] Batch [2560-2580]	Speed: 2223.69 samples/sec	accuracy=0.043750
+2022-05-11 10:06:39,785 Node[0] Epoch[0] Batch [2580-2600]	Speed: 2239.54 samples/sec	accuracy=0.041406
+2022-05-11 10:06:40,938 Node[0] Epoch[0] Batch [2600-2620]	Speed: 2220.64 samples/sec	accuracy=0.041406
+2022-05-11 10:06:42,087 Node[0] Epoch[0] Batch [2620-2640]	Speed: 2228.43 samples/sec	accuracy=0.044531
+2022-05-11 10:06:43,239 Node[0] Epoch[0] Batch [2640-2660]	Speed: 2221.39 samples/sec	accuracy=0.040625
+2022-05-11 10:06:44,387 Node[0] Epoch[0] Batch [2660-2680]	Speed: 2229.74 samples/sec	accuracy=0.042188
+2022-05-11 10:06:45,540 Node[0] Epoch[0] Batch [2680-2700]	Speed: 2221.05 samples/sec	accuracy=0.038281
+2022-05-11 10:06:46,693 Node[0] Epoch[0] Batch [2700-2720]	Speed: 2219.70 samples/sec	accuracy=0.040625
+2022-05-11 10:06:47,844 Node[0] Epoch[0] Batch [2720-2740]	Speed: 2225.04 samples/sec	accuracy=0.042969
+2022-05-11 10:06:48,991 Node[0] Epoch[0] Batch [2740-2760]	Speed: 2230.60 samples/sec	accuracy=0.046094
+2022-05-11 10:06:50,132 Node[0] Epoch[0] Batch [2760-2780]	Speed: 2244.10 samples/sec	accuracy=0.045312
+2022-05-11 10:06:51,280 Node[0] Epoch[0] Batch [2780-2800]	Speed: 2229.40 samples/sec	accuracy=0.047656
+2022-05-11 10:06:52,434 Node[0] Epoch[0] Batch [2800-2820]	Speed: 2219.65 samples/sec	accuracy=0.050000
+2022-05-11 10:06:53,583 Node[0] Epoch[0] Batch [2820-2840]	Speed: 2227.02 samples/sec	accuracy=0.045312
+2022-05-11 10:06:54,733 Node[0] Epoch[0] Batch [2840-2860]	Speed: 2226.18 samples/sec	accuracy=0.043750
+2022-05-11 10:06:55,879 Node[0] Epoch[0] Batch [2860-2880]	Speed: 2233.80 samples/sec	accuracy=0.038281
+2022-05-11 10:06:57,023 Node[0] Epoch[0] Batch [2880-2900]	Speed: 2237.74 samples/sec	accuracy=0.033594
+2022-05-11 10:06:58,173 Node[0] Epoch[0] Batch [2900-2920]	Speed: 2226.57 samples/sec	accuracy=0.042188
+2022-05-11 10:06:59,318 Node[0] Epoch[0] Batch [2920-2940]	Speed: 2235.38 samples/sec	accuracy=0.042969
+2022-05-11 10:07:00,466 Node[0] Epoch[0] Batch [2940-2960]	Speed: 2230.62 samples/sec	accuracy=0.043750
+2022-05-11 10:07:01,613 Node[0] Epoch[0] Batch [2960-2980]	Speed: 2231.74 samples/sec	accuracy=0.052344
+2022-05-11 10:07:02,762 Node[0] Epoch[0] Batch [2980-3000]	Speed: 2227.69 samples/sec	accuracy=0.039062
+2022-05-11 10:07:03,907 Node[0] Epoch[0] Batch [3000-3020]	Speed: 2236.52 samples/sec	accuracy=0.042969
+2022-05-11 10:07:05,055 Node[0] Epoch[0] Batch [3020-3040]	Speed: 2229.97 samples/sec	accuracy=0.050781
+2022-05-11 10:07:06,203 Node[0] Epoch[0] Batch [3040-3060]	Speed: 2229.72 samples/sec	accuracy=0.035156
+2022-05-11 10:07:07,353 Node[0] Epoch[0] Batch [3060-3080]	Speed: 2226.09 samples/sec	accuracy=0.045312
+2022-05-11 10:07:08,501 Node[0] Epoch[0] Batch [3080-3100]	Speed: 2230.38 samples/sec	accuracy=0.048438
+2022-05-11 10:07:09,649 Node[0] Epoch[0] Batch [3100-3120]	Speed: 2229.82 samples/sec	accuracy=0.053906
+2022-05-11 10:07:10,795 Node[0] Epoch[0] Batch [3120-3140]	Speed: 2232.87 samples/sec	accuracy=0.043750
+2022-05-11 10:07:11,944 Node[0] Epoch[0] Batch [3140-3160]	Speed: 2229.45 samples/sec	accuracy=0.049219
+2022-05-11 10:07:13,088 Node[0] Epoch[0] Batch [3160-3180]	Speed: 2237.74 samples/sec	accuracy=0.046875
+2022-05-11 10:07:14,242 Node[0] Epoch[0] Batch [3180-3200]	Speed: 2217.04 samples/sec	accuracy=0.045312
+2022-05-11 10:07:15,390 Node[0] Epoch[0] Batch [3200-3220]	Speed: 2230.90 samples/sec	accuracy=0.047656
+2022-05-11 10:07:16,541 Node[0] Epoch[0] Batch [3220-3240]	Speed: 2224.26 samples/sec	accuracy=0.053906
+2022-05-11 10:07:17,690 Node[0] Epoch[0] Batch [3240-3260]	Speed: 2226.95 samples/sec	accuracy=0.051562
+2022-05-11 10:07:18,837 Node[0] Epoch[0] Batch [3260-3280]	Speed: 2232.43 samples/sec	accuracy=0.049219
+2022-05-11 10:07:19,982 Node[0] Epoch[0] Batch [3280-3300]	Speed: 2234.99 samples/sec	accuracy=0.038281
+2022-05-11 10:07:21,131 Node[0] Epoch[0] Batch [3300-3320]	Speed: 2229.25 samples/sec	accuracy=0.040625
+2022-05-11 10:07:22,271 Node[0] Epoch[0] Batch [3320-3340]	Speed: 2244.37 samples/sec	accuracy=0.056250
+2022-05-11 10:07:23,415 Node[0] Epoch[0] Batch [3340-3360]	Speed: 2238.57 samples/sec	accuracy=0.053906
+2022-05-11 10:07:24,560 Node[0] Epoch[0] Batch [3360-3380]	Speed: 2234.87 samples/sec	accuracy=0.050000
+2022-05-11 10:07:25,708 Node[0] Epoch[0] Batch [3380-3400]	Speed: 2231.70 samples/sec	accuracy=0.049219
+2022-05-11 10:07:26,853 Node[0] Epoch[0] Batch [3400-3420]	Speed: 2235.77 samples/sec	accuracy=0.054688
+2022-05-11 10:07:27,998 Node[0] Epoch[0] Batch [3420-3440]	Speed: 2235.77 samples/sec	accuracy=0.062500
+2022-05-11 10:07:29,144 Node[0] Epoch[0] Batch [3440-3460]	Speed: 2233.24 samples/sec	accuracy=0.047656
+2022-05-11 10:07:30,288 Node[0] Epoch[0] Batch [3460-3480]	Speed: 2237.01 samples/sec	accuracy=0.054688
+2022-05-11 10:07:31,434 Node[0] Epoch[0] Batch [3480-3500]	Speed: 2233.56 samples/sec	accuracy=0.067187
+2022-05-11 10:07:32,579 Node[0] Epoch[0] Batch [3500-3520]	Speed: 2236.24 samples/sec	accuracy=0.064062
+2022-05-11 10:07:33,715 Node[0] Epoch[0] Batch [3520-3540]	Speed: 2254.58 samples/sec	accuracy=0.051562
+2022-05-11 10:07:34,846 Node[0] Epoch[0] Batch [3540-3560]	Speed: 2262.95 samples/sec	accuracy=0.055469
+2022-05-11 10:07:35,982 Node[0] Epoch[0] Batch [3560-3580]	Speed: 2252.57 samples/sec	accuracy=0.063281
+2022-05-11 10:07:37,112 Node[0] Epoch[0] Batch [3580-3600]	Speed: 2266.62 samples/sec	accuracy=0.053906
+2022-05-11 10:07:38,248 Node[0] Epoch[0] Batch [3600-3620]	Speed: 2254.03 samples/sec	accuracy=0.051562
+2022-05-11 10:07:39,379 Node[0] Epoch[0] Batch [3620-3640]	Speed: 2263.25 samples/sec	accuracy=0.059375
+2022-05-11 10:07:40,513 Node[0] Epoch[0] Batch [3640-3660]	Speed: 2257.91 samples/sec	accuracy=0.064062
+2022-05-11 10:07:41,645 Node[0] Epoch[0] Batch [3660-3680]	Speed: 2261.41 samples/sec	accuracy=0.053125
+2022-05-11 10:07:42,778 Node[0] Epoch[0] Batch [3680-3700]	Speed: 2259.33 samples/sec	accuracy=0.051562
+2022-05-11 10:07:43,908 Node[0] Epoch[0] Batch [3700-3720]	Speed: 2265.48 samples/sec	accuracy=0.066406
+2022-05-11 10:07:45,039 Node[0] Epoch[0] Batch [3720-3740]	Speed: 2263.11 samples/sec	accuracy=0.054688
+2022-05-11 10:07:46,171 Node[0] Epoch[0] Batch [3740-3760]	Speed: 2261.94 samples/sec	accuracy=0.057031
+2022-05-11 10:07:47,303 Node[0] Epoch[0] Batch [3760-3780]	Speed: 2260.32 samples/sec	accuracy=0.055469
+2022-05-11 10:07:48,435 Node[0] Epoch[0] Batch [3780-3800]	Speed: 2261.01 samples/sec	accuracy=0.055469
+2022-05-11 10:07:49,570 Node[0] Epoch[0] Batch [3800-3820]	Speed: 2256.08 samples/sec	accuracy=0.066406
+2022-05-11 10:07:50,703 Node[0] Epoch[0] Batch [3820-3840]	Speed: 2260.07 samples/sec	accuracy=0.050781
+2022-05-11 10:07:51,827 Node[0] Epoch[0] Batch [3840-3860]	Speed: 2276.61 samples/sec	accuracy=0.056250
+2022-05-11 10:07:52,958 Node[0] Epoch[0] Batch [3860-3880]	Speed: 2263.53 samples/sec	accuracy=0.059375
+2022-05-11 10:07:54,090 Node[0] Epoch[0] Batch [3880-3900]	Speed: 2261.81 samples/sec	accuracy=0.046875
+2022-05-11 10:07:55,221 Node[0] Epoch[0] Batch [3900-3920]	Speed: 2264.63 samples/sec	accuracy=0.046094
+2022-05-11 10:07:56,353 Node[0] Epoch[0] Batch [3920-3940]	Speed: 2260.24 samples/sec	accuracy=0.063281
+2022-05-11 10:07:57,482 Node[0] Epoch[0] Batch [3940-3960]	Speed: 2268.08 samples/sec	accuracy=0.050000
+2022-05-11 10:07:58,612 Node[0] Epoch[0] Batch [3960-3980]	Speed: 2264.67 samples/sec	accuracy=0.054688
+2022-05-11 10:07:59,741 Node[0] Epoch[0] Batch [3980-4000]	Speed: 2268.82 samples/sec	accuracy=0.046094
+2022-05-11 10:08:00,881 Node[0] Epoch[0] Batch [4000-4020]	Speed: 2244.30 samples/sec	accuracy=0.060937
+2022-05-11 10:08:02,020 Node[0] Epoch[0] Batch [4020-4040]	Speed: 2248.69 samples/sec	accuracy=0.058594
+2022-05-11 10:08:03,157 Node[0] Epoch[0] Batch [4040-4060]	Speed: 2251.95 samples/sec	accuracy=0.068750
+2022-05-11 10:08:04,294 Node[0] Epoch[0] Batch [4060-4080]	Speed: 2251.61 samples/sec	accuracy=0.057813
+2022-05-11 10:08:05,435 Node[0] Epoch[0] Batch [4080-4100]	Speed: 2242.73 samples/sec	accuracy=0.057813
+2022-05-11 10:08:06,577 Node[0] Epoch[0] Batch [4100-4120]	Speed: 2241.10 samples/sec	accuracy=0.064844
+2022-05-11 10:08:07,719 Node[0] Epoch[0] Batch [4120-4140]	Speed: 2242.56 samples/sec	accuracy=0.051562
+2022-05-11 10:08:08,860 Node[0] Epoch[0] Batch [4140-4160]	Speed: 2243.31 samples/sec	accuracy=0.064062
+2022-05-11 10:08:09,999 Node[0] Epoch[0] Batch [4160-4180]	Speed: 2247.73 samples/sec	accuracy=0.061719
+2022-05-11 10:08:11,143 Node[0] Epoch[0] Batch [4180-4200]	Speed: 2237.70 samples/sec	accuracy=0.072656
+2022-05-11 10:08:12,278 Node[0] Epoch[0] Batch [4200-4220]	Speed: 2255.72 samples/sec	accuracy=0.072656
+2022-05-11 10:08:13,413 Node[0] Epoch[0] Batch [4220-4240]	Speed: 2255.66 samples/sec	accuracy=0.067187
+2022-05-11 10:08:14,543 Node[0] Epoch[0] Batch [4240-4260]	Speed: 2264.47 samples/sec	accuracy=0.071094
+2022-05-11 10:08:15,672 Node[0] Epoch[0] Batch [4260-4280]	Speed: 2268.35 samples/sec	accuracy=0.067969
+2022-05-11 10:08:16,801 Node[0] Epoch[0] Batch [4280-4300]	Speed: 2268.12 samples/sec	accuracy=0.053906
+2022-05-11 10:08:17,935 Node[0] Epoch[0] Batch [4300-4320]	Speed: 2257.04 samples/sec	accuracy=0.058594
+2022-05-11 10:08:19,066 Node[0] Epoch[0] Batch [4320-4340]	Speed: 2263.68 samples/sec	accuracy=0.071875
+2022-05-11 10:08:20,199 Node[0] Epoch[0] Batch [4340-4360]	Speed: 2259.42 samples/sec	accuracy=0.067187
+2022-05-11 10:08:21,335 Node[0] Epoch[0] Batch [4360-4380]	Speed: 2252.13 samples/sec	accuracy=0.067187
+2022-05-11 10:08:22,476 Node[0] Epoch[0] Batch [4380-4400]	Speed: 2245.42 samples/sec	accuracy=0.065625
+2022-05-11 10:08:23,608 Node[0] Epoch[0] Batch [4400-4420]	Speed: 2260.73 samples/sec	accuracy=0.063281
+2022-05-11 10:08:24,740 Node[0] Epoch[0] Batch [4420-4440]	Speed: 2260.43 samples/sec	accuracy=0.068750
+2022-05-11 10:08:25,872 Node[0] Epoch[0] Batch [4440-4460]	Speed: 2262.09 samples/sec	accuracy=0.067187
+2022-05-11 10:08:26,998 Node[0] Epoch[0] Batch [4460-4480]	Speed: 2274.68 samples/sec	accuracy=0.071875
+2022-05-11 10:08:28,129 Node[0] Epoch[0] Batch [4480-4500]	Speed: 2261.70 samples/sec	accuracy=0.061719
+2022-05-11 10:08:29,266 Node[0] Epoch[0] Batch [4500-4520]	Speed: 2252.55 samples/sec	accuracy=0.065625
+2022-05-11 10:08:30,401 Node[0] Epoch[0] Batch [4520-4540]	Speed: 2255.58 samples/sec	accuracy=0.068750
+2022-05-11 10:08:31,535 Node[0] Epoch[0] Batch [4540-4560]	Speed: 2257.12 samples/sec	accuracy=0.061719
+2022-05-11 10:08:32,677 Node[0] Epoch[0] Batch [4560-4580]	Speed: 2242.08 samples/sec	accuracy=0.059375
+2022-05-11 10:08:33,811 Node[0] Epoch[0] Batch [4580-4600]	Speed: 2258.11 samples/sec	accuracy=0.066406
+2022-05-11 10:08:34,947 Node[0] Epoch[0] Batch [4600-4620]	Speed: 2252.05 samples/sec	accuracy=0.071094
+2022-05-11 10:08:36,082 Node[0] Epoch[0] Batch [4620-4640]	Speed: 2255.70 samples/sec	accuracy=0.058594
+2022-05-11 10:08:37,218 Node[0] Epoch[0] Batch [4640-4660]	Speed: 2254.83 samples/sec	accuracy=0.068750
+2022-05-11 10:08:38,349 Node[0] Epoch[0] Batch [4660-4680]	Speed: 2262.87 samples/sec	accuracy=0.048438
+2022-05-11 10:08:39,488 Node[0] Epoch[0] Batch [4680-4700]	Speed: 2247.43 samples/sec	accuracy=0.064062
+2022-05-11 10:08:40,622 Node[0] Epoch[0] Batch [4700-4720]	Speed: 2256.37 samples/sec	accuracy=0.052344
+2022-05-11 10:08:41,761 Node[0] Epoch[0] Batch [4720-4740]	Speed: 2247.80 samples/sec	accuracy=0.057031
+2022-05-11 10:08:42,903 Node[0] Epoch[0] Batch [4740-4760]	Speed: 2242.21 samples/sec	accuracy=0.067969
+2022-05-11 10:08:46,019 Node[0] Epoch[0] Batch [4760-4780]	Speed: 821.56 samples/sec	accuracy=0.063281
+2022-05-11 10:08:47,150 Node[0] Epoch[0] Batch [4780-4800]	Speed: 2264.07 samples/sec	accuracy=0.058594
+2022-05-11 10:08:48,276 Node[0] Epoch[0] Batch [4800-4820]	Speed: 2273.14 samples/sec	accuracy=0.067187
+2022-05-11 10:08:49,404 Node[0] Epoch[0] Batch [4820-4840]	Speed: 2268.70 samples/sec	accuracy=0.063281
+2022-05-11 10:08:50,532 Node[0] Epoch[0] Batch [4840-4860]	Speed: 2270.62 samples/sec	accuracy=0.062500
+2022-05-11 10:08:51,661 Node[0] Epoch[0] Batch [4860-4880]	Speed: 2267.88 samples/sec	accuracy=0.065625
+2022-05-11 10:08:52,787 Node[0] Epoch[0] Batch [4880-4900]	Speed: 2272.74 samples/sec	accuracy=0.057813
+2022-05-11 10:08:53,915 Node[0] Epoch[0] Batch [4900-4920]	Speed: 2269.80 samples/sec	accuracy=0.060156
+2022-05-11 10:08:55,041 Node[0] Epoch[0] Batch [4920-4940]	Speed: 2273.50 samples/sec	accuracy=0.057813
+2022-05-11 10:08:56,168 Node[0] Epoch[0] Batch [4940-4960]	Speed: 2270.71 samples/sec	accuracy=0.061719
+2022-05-11 10:08:57,294 Node[0] Epoch[0] Batch [4960-4980]	Speed: 2273.43 samples/sec	accuracy=0.054688
+2022-05-11 10:08:58,423 Node[0] Epoch[0] Batch [4980-5000]	Speed: 2268.58 samples/sec	accuracy=0.071875
+2022-05-11 10:08:59,549 Node[0] Epoch[0] Batch [5000-5020]	Speed: 2273.39 samples/sec	accuracy=0.061719
+2022-05-11 10:09:00,672 Node[0] Epoch[0] Batch [5020-5040]	Speed: 2280.39 samples/sec	accuracy=0.061719
+2022-05-11 10:09:01,798 Node[0] Epoch[0] Batch [5040-5060]	Speed: 2273.34 samples/sec	accuracy=0.046875
+2022-05-11 10:09:02,927 Node[0] Epoch[0] Batch [5060-5080]	Speed: 2266.31 samples/sec	accuracy=0.062500
+2022-05-11 10:09:04,063 Node[0] Epoch[0] Batch [5080-5100]	Speed: 2253.94 samples/sec	accuracy=0.057813
+2022-05-11 10:09:05,193 Node[0] Epoch[0] Batch [5100-5120]	Speed: 2264.95 samples/sec	accuracy=0.067187
+2022-05-11 10:09:06,323 Node[0] Epoch[0] Batch [5120-5140]	Speed: 2265.79 samples/sec	accuracy=0.048438
+2022-05-11 10:09:07,453 Node[0] Epoch[0] Batch [5140-5160]	Speed: 2265.58 samples/sec	accuracy=0.051562
+2022-05-11 10:09:08,587 Node[0] Epoch[0] Batch [5160-5180]	Speed: 2257.42 samples/sec	accuracy=0.061719
+2022-05-11 10:09:09,720 Node[0] Epoch[0] Batch [5180-5200]	Speed: 2260.51 samples/sec	accuracy=0.049219
+2022-05-11 10:09:10,848 Node[0] Epoch[0] Batch [5200-5220]	Speed: 2268.23 samples/sec	accuracy=0.053906
+2022-05-11 10:09:11,977 Node[0] Epoch[0] Batch [5220-5240]	Speed: 2267.82 samples/sec	accuracy=0.053125
+2022-05-11 10:09:13,109 Node[0] Epoch[0] Batch [5240-5260]	Speed: 2262.52 samples/sec	accuracy=0.056250
+2022-05-11 10:09:14,240 Node[0] Epoch[0] Batch [5260-5280]	Speed: 2263.50 samples/sec	accuracy=0.062500
+2022-05-11 10:09:15,371 Node[0] Epoch[0] Batch [5280-5300]	Speed: 2262.41 samples/sec	accuracy=0.062500
+2022-05-11 10:09:16,501 Node[0] Epoch[0] Batch [5300-5320]	Speed: 2265.44 samples/sec	accuracy=0.062500
+2022-05-11 10:09:17,635 Node[0] Epoch[0] Batch [5320-5340]	Speed: 2257.98 samples/sec	accuracy=0.072656
+2022-05-11 10:09:18,766 Node[0] Epoch[0] Batch [5340-5360]	Speed: 2264.05 samples/sec	accuracy=0.053125
+2022-05-11 10:09:19,899 Node[0] Epoch[0] Batch [5360-5380]	Speed: 2258.33 samples/sec	accuracy=0.059375
+2022-05-11 10:09:21,030 Node[0] Epoch[0] Batch [5380-5400]	Speed: 2263.39 samples/sec	accuracy=0.058594
+2022-05-11 10:09:22,165 Node[0] Epoch[0] Batch [5400-5420]	Speed: 2255.07 samples/sec	accuracy=0.057813
+2022-05-11 10:09:23,295 Node[0] Epoch[0] Batch [5420-5440]	Speed: 2265.91 samples/sec	accuracy=0.044531
+2022-05-11 10:09:24,428 Node[0] Epoch[0] Batch [5440-5460]	Speed: 2260.93 samples/sec	accuracy=0.052344
+2022-05-11 10:09:25,562 Node[0] Epoch[0] Batch [5460-5480]	Speed: 2256.96 samples/sec	accuracy=0.053125
+2022-05-11 10:09:26,694 Node[0] Epoch[0] Batch [5480-5500]	Speed: 2260.32 samples/sec	accuracy=0.061719
+2022-05-11 10:09:27,824 Node[0] Epoch[0] Batch [5500-5520]	Speed: 2265.36 samples/sec	accuracy=0.060937
+2022-05-11 10:09:28,958 Node[0] Epoch[0] Batch [5520-5540]	Speed: 2258.34 samples/sec	accuracy=0.056250
+2022-05-11 10:09:30,089 Node[0] Epoch[0] Batch [5540-5560]	Speed: 2262.69 samples/sec	accuracy=0.053125
+2022-05-11 10:09:31,222 Node[0] Epoch[0] Batch [5560-5580]	Speed: 2261.19 samples/sec	accuracy=0.055469
+2022-05-11 10:09:32,354 Node[0] Epoch[0] Batch [5580-5600]	Speed: 2260.60 samples/sec	accuracy=0.049219
+2022-05-11 10:09:33,488 Node[0] Epoch[0] Batch [5600-5620]	Speed: 2257.12 samples/sec	accuracy=0.053125
+2022-05-11 10:09:34,622 Node[0] Epoch[0] Batch [5620-5640]	Speed: 2257.88 samples/sec	accuracy=0.048438
+2022-05-11 10:09:35,755 Node[0] Epoch[0] Batch [5640-5660]	Speed: 2260.30 samples/sec	accuracy=0.048438
+2022-05-11 10:09:36,886 Node[0] Epoch[0] Batch [5660-5680]	Speed: 2261.90 samples/sec	accuracy=0.038281
+2022-05-11 10:09:38,016 Node[0] Epoch[0] Batch [5680-5700]	Speed: 2266.82 samples/sec	accuracy=0.044531
+2022-05-11 10:09:39,152 Node[0] Epoch[0] Batch [5700-5720]	Speed: 2253.61 samples/sec	accuracy=0.045312
+2022-05-11 10:09:40,283 Node[0] Epoch[0] Batch [5720-5740]	Speed: 2262.15 samples/sec	accuracy=0.042188
+2022-05-11 10:09:41,418 Node[0] Epoch[0] Batch [5740-5760]	Speed: 2256.90 samples/sec	accuracy=0.043750
+2022-05-11 10:09:42,549 Node[0] Epoch[0] Batch [5760-5780]	Speed: 2262.58 samples/sec	accuracy=0.038281
+2022-05-11 10:09:43,681 Node[0] Epoch[0] Batch [5780-5800]	Speed: 2261.54 samples/sec	accuracy=0.042969
+2022-05-11 10:09:44,815 Node[0] Epoch[0] Batch [5800-5820]	Speed: 2258.25 samples/sec	accuracy=0.050781
+2022-05-11 10:09:45,945 Node[0] Epoch[0] Batch [5820-5840]	Speed: 2265.80 samples/sec	accuracy=0.050000
+2022-05-11 10:09:47,075 Node[0] Epoch[0] Batch [5840-5860]	Speed: 2265.39 samples/sec	accuracy=0.047656
+2022-05-11 10:09:48,204 Node[0] Epoch[0] Batch [5860-5880]	Speed: 2266.11 samples/sec	accuracy=0.052344
+2022-05-11 10:09:49,336 Node[0] Epoch[0] Batch [5880-5900]	Speed: 2262.98 samples/sec	accuracy=0.046094
+2022-05-11 10:09:50,467 Node[0] Epoch[0] Batch [5900-5920]	Speed: 2262.95 samples/sec	accuracy=0.046094
+2022-05-11 10:09:51,597 Node[0] Epoch[0] Batch [5920-5940]	Speed: 2265.12 samples/sec	accuracy=0.042969
+2022-05-11 10:09:52,730 Node[0] Epoch[0] Batch [5940-5960]	Speed: 2259.64 samples/sec	accuracy=0.047656
+2022-05-11 10:09:53,853 Node[0] Epoch[0] Batch [5960-5980]	Speed: 2279.05 samples/sec	accuracy=0.039062
+2022-05-11 10:09:54,983 Node[0] Epoch[0] Batch [5980-6000]	Speed: 2265.57 samples/sec	accuracy=0.047656
+2022-05-11 10:09:56,116 Node[0] Epoch[0] Batch [6000-6020]	Speed: 2259.49 samples/sec	accuracy=0.044531
+2022-05-11 10:09:57,247 Node[0] Epoch[0] Batch [6020-6040]	Speed: 2263.57 samples/sec	accuracy=0.047656
+2022-05-11 10:09:58,377 Node[0] Epoch[0] Batch [6040-6060]	Speed: 2265.01 samples/sec	accuracy=0.036719
+2022-05-11 10:09:59,506 Node[0] Epoch[0] Batch [6060-6080]	Speed: 2267.94 samples/sec	accuracy=0.042969
+2022-05-11 10:10:00,640 Node[0] Epoch[0] Batch [6080-6100]	Speed: 2258.45 samples/sec	accuracy=0.035937
+2022-05-11 10:10:01,770 Node[0] Epoch[0] Batch [6100-6120]	Speed: 2265.39 samples/sec	accuracy=0.036719
+2022-05-11 10:10:02,901 Node[0] Epoch[0] Batch [6120-6140]	Speed: 2263.16 samples/sec	accuracy=0.040625
+2022-05-11 10:10:04,027 Node[0] Epoch[0] Batch [6140-6160]	Speed: 2272.31 samples/sec	accuracy=0.037500
+2022-05-11 10:10:05,158 Node[0] Epoch[0] Batch [6160-6180]	Speed: 2264.20 samples/sec	accuracy=0.035937
+2022-05-11 10:10:06,289 Node[0] Epoch[0] Batch [6180-6200]	Speed: 2263.51 samples/sec	accuracy=0.050000
+2022-05-11 10:10:07,425 Node[0] Epoch[0] Batch [6200-6220]	Speed: 2253.56 samples/sec	accuracy=0.032031
+2022-05-11 10:10:08,556 Node[0] Epoch[0] Batch [6220-6240]	Speed: 2264.63 samples/sec	accuracy=0.041406
+2022-05-11 10:10:09,685 Node[0] Epoch[0] Batch [6240-6260]	Speed: 2265.85 samples/sec	accuracy=0.043750
+2022-05-11 10:10:10,814 Node[0] Epoch[0] Batch [6260-6280]	Speed: 2268.54 samples/sec	accuracy=0.035937
+2022-05-11 10:10:11,944 Node[0] Epoch[0] Batch [6280-6300]	Speed: 2264.90 samples/sec	accuracy=0.043750
+2022-05-11 10:10:13,067 Node[0] Epoch[0] Batch [6300-6320]	Speed: 2280.13 samples/sec	accuracy=0.036719
+2022-05-11 10:10:14,205 Node[0] Epoch[0] Batch [6320-6340]	Speed: 2249.72 samples/sec	accuracy=0.035937
+2022-05-11 10:10:15,337 Node[0] Epoch[0] Batch [6340-6360]	Speed: 2261.19 samples/sec	accuracy=0.036719
+2022-05-11 10:10:16,466 Node[0] Epoch[0] Batch [6360-6380]	Speed: 2266.51 samples/sec	accuracy=0.026562
+2022-05-11 10:10:17,597 Node[0] Epoch[0] Batch [6380-6400]	Speed: 2264.69 samples/sec	accuracy=0.032031
+2022-05-11 10:10:18,726 Node[0] Epoch[0] Batch [6400-6420]	Speed: 2266.27 samples/sec	accuracy=0.041406
+2022-05-11 10:10:19,857 Node[0] Epoch[0] Batch [6420-6440]	Speed: 2264.59 samples/sec	accuracy=0.026562
+2022-05-11 10:10:20,988 Node[0] Epoch[0] Batch [6440-6460]	Speed: 2262.38 samples/sec	accuracy=0.029687
+2022-05-11 10:10:22,118 Node[0] Epoch[0] Batch [6460-6480]	Speed: 2266.18 samples/sec	accuracy=0.029687
+2022-05-11 10:10:23,246 Node[0] Epoch[0] Batch [6480-6500]	Speed: 2269.98 samples/sec	accuracy=0.029687
+2022-05-11 10:10:24,372 Node[0] Epoch[0] Batch [6500-6520]	Speed: 2273.10 samples/sec	accuracy=0.024219
+2022-05-11 10:10:25,501 Node[0] Epoch[0] Batch [6520-6540]	Speed: 2267.45 samples/sec	accuracy=0.035156
+2022-05-11 10:10:26,630 Node[0] Epoch[0] Batch [6540-6560]	Speed: 2267.23 samples/sec	accuracy=0.035937
+2022-05-11 10:10:27,759 Node[0] Epoch[0] Batch [6560-6580]	Speed: 2267.49 samples/sec	accuracy=0.028125
+2022-05-11 10:10:28,888 Node[0] Epoch[0] Batch [6580-6600]	Speed: 2267.51 samples/sec	accuracy=0.032813
+2022-05-11 10:10:30,025 Node[0] Epoch[0] Batch [6600-6620]	Speed: 2251.35 samples/sec	accuracy=0.021094
+2022-05-11 10:10:31,151 Node[0] Epoch[0] Batch [6620-6640]	Speed: 2273.85 samples/sec	accuracy=0.030469
+2022-05-11 10:10:32,277 Node[0] Epoch[0] Batch [6640-6660]	Speed: 2274.43 samples/sec	accuracy=0.022656
+2022-05-11 10:10:33,405 Node[0] Epoch[0] Batch [6660-6680]	Speed: 2268.24 samples/sec	accuracy=0.032031
+2022-05-11 10:10:34,534 Node[0] Epoch[0] Batch [6680-6700]	Speed: 2267.14 samples/sec	accuracy=0.024219
+2022-05-11 10:10:35,660 Node[0] Epoch[0] Batch [6700-6720]	Speed: 2275.26 samples/sec	accuracy=0.024219
+2022-05-11 10:10:36,790 Node[0] Epoch[0] Batch [6720-6740]	Speed: 2265.33 samples/sec	accuracy=0.033594
+2022-05-11 10:10:37,920 Node[0] Epoch[0] Batch [6740-6760]	Speed: 2264.29 samples/sec	accuracy=0.032031
+2022-05-11 10:10:39,042 Node[0] Epoch[0] Batch [6760-6780]	Speed: 2282.91 samples/sec	accuracy=0.025781
+2022-05-11 10:10:40,178 Node[0] Epoch[0] Batch [6780-6800]	Speed: 2253.12 samples/sec	accuracy=0.017969
+2022-05-11 10:10:41,303 Node[0] Epoch[0] Batch [6800-6820]	Speed: 2275.61 samples/sec	accuracy=0.025000
+2022-05-11 10:10:42,429 Node[0] Epoch[0] Batch [6820-6840]	Speed: 2272.56 samples/sec	accuracy=0.025781
+2022-05-11 10:10:43,557 Node[0] Epoch[0] Batch [6840-6860]	Speed: 2269.55 samples/sec	accuracy=0.027344
+2022-05-11 10:10:44,685 Node[0] Epoch[0] Batch [6860-6880]	Speed: 2270.06 samples/sec	accuracy=0.011719
+2022-05-11 10:10:45,816 Node[0] Epoch[0] Batch [6880-6900]	Speed: 2262.89 samples/sec	accuracy=0.020313
+2022-05-11 10:10:46,946 Node[0] Epoch[0] Batch [6900-6920]	Speed: 2266.12 samples/sec	accuracy=0.023438
+2022-05-11 10:10:48,075 Node[0] Epoch[0] Batch [6920-6940]	Speed: 2268.05 samples/sec	accuracy=0.021875
+2022-05-11 10:10:49,202 Node[0] Epoch[0] Batch [6940-6960]	Speed: 2270.47 samples/sec	accuracy=0.016406
+2022-05-11 10:10:50,328 Node[0] Epoch[0] Batch [6960-6980]	Speed: 2273.12 samples/sec	accuracy=0.022656
+2022-05-11 10:10:51,455 Node[0] Epoch[0] Batch [6980-7000]	Speed: 2273.06 samples/sec	accuracy=0.021094
+2022-05-11 10:10:52,582 Node[0] Epoch[0] Batch [7000-7020]	Speed: 2271.09 samples/sec	accuracy=0.028125
+2022-05-11 10:10:53,707 Node[0] Epoch[0] Batch [7020-7040]	Speed: 2275.53 samples/sec	accuracy=0.022656
+2022-05-11 10:10:54,830 Node[0] Epoch[0] Batch [7040-7060]	Speed: 2278.80 samples/sec	accuracy=0.025000
+2022-05-11 10:10:55,955 Node[0] Epoch[0] Batch [7060-7080]	Speed: 2277.13 samples/sec	accuracy=0.019531
+2022-05-11 10:10:57,074 Node[0] Epoch[0] Batch [7080-7100]	Speed: 2285.83 samples/sec	accuracy=0.013281
+2022-05-11 10:10:58,207 Node[0] Epoch[0] Batch [7100-7120]	Speed: 2260.78 samples/sec	accuracy=0.019531
+2022-05-11 10:10:59,329 Node[0] Epoch[0] Batch [7120-7140]	Speed: 2281.81 samples/sec	accuracy=0.017969
+2022-05-11 10:11:00,441 Node[0] Epoch[0] Batch [7140-7160]	Speed: 2300.65 samples/sec	accuracy=0.021094
+2022-05-11 10:11:01,553 Node[0] Epoch[0] Batch [7160-7180]	Speed: 2303.87 samples/sec	accuracy=0.017188
+2022-05-11 10:11:02,665 Node[0] Epoch[0] Batch [7180-7200]	Speed: 2300.58 samples/sec	accuracy=0.015625
+2022-05-11 10:11:03,798 Node[0] Epoch[0] Batch [7200-7220]	Speed: 2259.55 samples/sec	accuracy=0.013281
+2022-05-11 10:11:04,920 Node[0] Epoch[0] Batch [7220-7240]	Speed: 2281.68 samples/sec	accuracy=0.021875
+2022-05-11 10:11:06,047 Node[0] Epoch[0] Batch [7240-7260]	Speed: 2271.59 samples/sec	accuracy=0.014063
+2022-05-11 10:11:07,172 Node[0] Epoch[0] Batch [7260-7280]	Speed: 2276.95 samples/sec	accuracy=0.024219
+2022-05-11 10:11:08,301 Node[0] Epoch[0] Batch [7280-7300]	Speed: 2267.62 samples/sec	accuracy=0.016406
+2022-05-11 10:11:09,427 Node[0] Epoch[0] Batch [7300-7320]	Speed: 2272.22 samples/sec	accuracy=0.011719
+2022-05-11 10:11:10,554 Node[0] Epoch[0] Batch [7320-7340]	Speed: 2272.35 samples/sec	accuracy=0.012500
+2022-05-11 10:11:11,679 Node[0] Epoch[0] Batch [7340-7360]	Speed: 2274.74 samples/sec	accuracy=0.012500
+2022-05-11 10:11:12,805 Node[0] Epoch[0] Batch [7360-7380]	Speed: 2273.83 samples/sec	accuracy=0.020313
+2022-05-11 10:11:13,929 Node[0] Epoch[0] Batch [7380-7400]	Speed: 2277.78 samples/sec	accuracy=0.010156
+2022-05-11 10:11:15,057 Node[0] Epoch[0] Batch [7400-7420]	Speed: 2268.67 samples/sec	accuracy=0.017188
+2022-05-11 10:11:16,182 Node[0] Epoch[0] Batch [7420-7440]	Speed: 2277.07 samples/sec	accuracy=0.016406
+2022-05-11 10:11:17,308 Node[0] Epoch[0] Batch [7440-7460]	Speed: 2273.72 samples/sec	accuracy=0.012500
+2022-05-11 10:11:18,432 Node[0] Epoch[0] Batch [7460-7480]	Speed: 2277.54 samples/sec	accuracy=0.015625
+2022-05-11 10:11:19,560 Node[0] Epoch[0] Batch [7480-7500]	Speed: 2269.44 samples/sec	accuracy=0.014844
+2022-05-11 10:11:20,688 Node[0] Epoch[0] Batch [7500-7520]	Speed: 2268.64 samples/sec	accuracy=0.014063
+2022-05-11 10:11:21,819 Node[0] Epoch[0] Batch [7520-7540]	Speed: 2264.46 samples/sec	accuracy=0.016406
+2022-05-11 10:11:22,947 Node[0] Epoch[0] Batch [7540-7560]	Speed: 2268.51 samples/sec	accuracy=0.009375
+2022-05-11 10:11:24,073 Node[0] Epoch[0] Batch [7560-7580]	Speed: 2272.67 samples/sec	accuracy=0.008594
+2022-05-11 10:11:25,201 Node[0] Epoch[0] Batch [7580-7600]	Speed: 2270.99 samples/sec	accuracy=0.010937
+2022-05-11 10:11:26,325 Node[0] Epoch[0] Batch [7600-7620]	Speed: 2277.34 samples/sec	accuracy=0.014844
+2022-05-11 10:11:27,453 Node[0] Epoch[0] Batch [7620-7640]	Speed: 2269.58 samples/sec	accuracy=0.014844
+2022-05-11 10:11:28,581 Node[0] Epoch[0] Batch [7640-7660]	Speed: 2269.93 samples/sec	accuracy=0.014844
+2022-05-11 10:11:29,695 Node[0] Epoch[0] Batch [7660-7680]	Speed: 2296.06 samples/sec	accuracy=0.010937
+2022-05-11 10:11:30,820 Node[0] Epoch[0] Batch [7680-7700]	Speed: 2276.83 samples/sec	accuracy=0.010156
+2022-05-11 10:11:31,943 Node[0] Epoch[0] Batch [7700-7720]	Speed: 2279.21 samples/sec	accuracy=0.011719
+2022-05-11 10:11:33,064 Node[0] Epoch[0] Batch [7720-7740]	Speed: 2283.57 samples/sec	accuracy=0.010937
+2022-05-11 10:11:34,186 Node[0] Epoch[0] Batch [7740-7760]	Speed: 2282.15 samples/sec	accuracy=0.012500
+2022-05-11 10:11:35,307 Node[0] Epoch[0] Batch [7760-7780]	Speed: 2284.05 samples/sec	accuracy=0.017969
+2022-05-11 10:11:36,426 Node[0] Epoch[0] Batch [7780-7800]	Speed: 2288.05 samples/sec	accuracy=0.011719
+2022-05-11 10:11:37,549 Node[0] Epoch[0] Batch [7800-7820]	Speed: 2278.09 samples/sec	accuracy=0.011719
+2022-05-11 10:11:38,684 Node[0] Epoch[0] Batch [7820-7840]	Speed: 2255.74 samples/sec	accuracy=0.009375
+2022-05-11 10:11:39,810 Node[0] Epoch[0] Batch [7840-7860]	Speed: 2273.31 samples/sec	accuracy=0.010156
+2022-05-11 10:11:40,933 Node[0] Epoch[0] Batch [7860-7880]	Speed: 2280.72 samples/sec	accuracy=0.007812
+2022-05-11 10:11:42,058 Node[0] Epoch[0] Batch [7880-7900]	Speed: 2274.43 samples/sec	accuracy=0.013281
+2022-05-11 10:11:43,186 Node[0] Epoch[0] Batch [7900-7920]	Speed: 2270.29 samples/sec	accuracy=0.012500
+2022-05-11 10:11:44,312 Node[0] Epoch[0] Batch [7920-7940]	Speed: 2273.82 samples/sec	accuracy=0.011719
+2022-05-11 10:11:45,438 Node[0] Epoch[0] Batch [7940-7960]	Speed: 2272.92 samples/sec	accuracy=0.007031
+2022-05-11 10:11:46,564 Node[0] Epoch[0] Batch [7960-7980]	Speed: 2274.60 samples/sec	accuracy=0.007812
+2022-05-11 10:11:47,689 Node[0] Epoch[0] Batch [7980-8000]	Speed: 2275.68 samples/sec	accuracy=0.013281
+2022-05-11 10:11:48,812 Node[0] Epoch[0] Batch [8000-8020]	Speed: 2278.38 samples/sec	accuracy=0.013281
+2022-05-11 10:11:49,938 Node[0] Epoch[0] Batch [8020-8040]	Speed: 2273.45 samples/sec	accuracy=0.007812
+2022-05-11 10:11:51,062 Node[0] Epoch[0] Batch [8040-8060]	Speed: 2278.74 samples/sec	accuracy=0.011719
+2022-05-11 10:11:52,183 Node[0] Epoch[0] Batch [8060-8080]	Speed: 2281.96 samples/sec	accuracy=0.009375
+2022-05-11 10:11:53,306 Node[0] Epoch[0] Batch [8080-8100]	Speed: 2279.92 samples/sec	accuracy=0.007031
+2022-05-11 10:11:54,426 Node[0] Epoch[0] Batch [8100-8120]	Speed: 2285.29 samples/sec	accuracy=0.010937
+2022-05-11 10:11:55,548 Node[0] Epoch[0] Batch [8120-8140]	Speed: 2283.24 samples/sec	accuracy=0.011719
+2022-05-11 10:11:56,678 Node[0] Epoch[0] Batch [8140-8160]	Speed: 2265.36 samples/sec	accuracy=0.010156
+2022-05-11 10:11:57,803 Node[0] Epoch[0] Batch [8160-8180]	Speed: 2274.23 samples/sec	accuracy=0.010937
+2022-05-11 10:11:58,924 Node[0] Epoch[0] Batch [8180-8200]	Speed: 2284.05 samples/sec	accuracy=0.010937
+2022-05-11 10:12:00,050 Node[0] Epoch[0] Batch [8200-8220]	Speed: 2273.03 samples/sec	accuracy=0.004687
+2022-05-11 10:12:01,175 Node[0] Epoch[0] Batch [8220-8240]	Speed: 2276.27 samples/sec	accuracy=0.009375
+2022-05-11 10:12:02,302 Node[0] Epoch[0] Batch [8240-8260]	Speed: 2272.43 samples/sec	accuracy=0.010937
+2022-05-11 10:12:03,429 Node[0] Epoch[0] Batch [8260-8280]	Speed: 2271.90 samples/sec	accuracy=0.008594
+2022-05-11 10:12:04,551 Node[0] Epoch[0] Batch [8280-8300]	Speed: 2279.63 samples/sec	accuracy=0.010156
+2022-05-11 10:12:05,677 Node[0] Epoch[0] Batch [8300-8320]	Speed: 2274.73 samples/sec	accuracy=0.009375
+2022-05-11 10:12:06,802 Node[0] Epoch[0] Batch [8320-8340]	Speed: 2276.12 samples/sec	accuracy=0.007812
+2022-05-11 10:12:07,929 Node[0] Epoch[0] Batch [8340-8360]	Speed: 2270.12 samples/sec	accuracy=0.008594
+2022-05-11 10:12:09,054 Node[0] Epoch[0] Batch [8360-8380]	Speed: 2275.60 samples/sec	accuracy=0.005469
+2022-05-11 10:12:10,178 Node[0] Epoch[0] Batch [8380-8400]	Speed: 2279.02 samples/sec	accuracy=0.007031
+2022-05-11 10:12:11,302 Node[0] Epoch[0] Batch [8400-8420]	Speed: 2277.04 samples/sec	accuracy=0.007812
+2022-05-11 10:12:12,427 Node[0] Epoch[0] Batch [8420-8440]	Speed: 2274.91 samples/sec	accuracy=0.008594
+2022-05-11 10:12:13,551 Node[0] Epoch[0] Batch [8440-8460]	Speed: 2278.89 samples/sec	accuracy=0.010937
+2022-05-11 10:12:14,675 Node[0] Epoch[0] Batch [8460-8480]	Speed: 2277.11 samples/sec	accuracy=0.009375
+2022-05-11 10:12:15,797 Node[0] Epoch[0] Batch [8480-8500]	Speed: 2281.17 samples/sec	accuracy=0.006250
+2022-05-11 10:12:16,922 Node[0] Epoch[0] Batch [8500-8520]	Speed: 2275.76 samples/sec	accuracy=0.007031
+2022-05-11 10:12:18,039 Node[0] Epoch[0] Batch [8520-8540]	Speed: 2292.42 samples/sec	accuracy=0.012500
+2022-05-11 10:12:19,172 Node[0] Epoch[0] Batch [8540-8560]	Speed: 2259.47 samples/sec	accuracy=0.007812
+2022-05-11 10:12:20,289 Node[0] Epoch[0] Batch [8560-8580]	Speed: 2290.28 samples/sec	accuracy=0.007812
+2022-05-11 10:12:21,413 Node[0] Epoch[0] Batch [8580-8600]	Speed: 2279.37 samples/sec	accuracy=0.011719
+2022-05-11 10:12:22,535 Node[0] Epoch[0] Batch [8600-8620]	Speed: 2281.37 samples/sec	accuracy=0.007031
+2022-05-11 10:12:23,657 Node[0] Epoch[0] Batch [8620-8640]	Speed: 2280.51 samples/sec	accuracy=0.008594
+2022-05-11 10:12:24,780 Node[0] Epoch[0] Batch [8640-8660]	Speed: 2279.63 samples/sec	accuracy=0.008594
+2022-05-11 10:12:25,912 Node[0] Epoch[0] Batch [8660-8680]	Speed: 2261.63 samples/sec	accuracy=0.006250
+2022-05-11 10:12:27,030 Node[0] Epoch[0] Batch [8680-8700]	Speed: 2290.09 samples/sec	accuracy=0.003906
+2022-05-11 10:12:28,148 Node[0] Epoch[0] Batch [8700-8720]	Speed: 2289.84 samples/sec	accuracy=0.014063
+2022-05-11 10:12:29,267 Node[0] Epoch[0] Batch [8720-8740]	Speed: 2287.24 samples/sec	accuracy=0.005469
+2022-05-11 10:12:30,387 Node[0] Epoch[0] Batch [8740-8760]	Speed: 2286.20 samples/sec	accuracy=0.003906
+2022-05-11 10:12:31,507 Node[0] Epoch[0] Batch [8760-8780]	Speed: 2285.87 samples/sec	accuracy=0.004687
+2022-05-11 10:12:32,628 Node[0] Epoch[0] Batch [8780-8800]	Speed: 2283.47 samples/sec	accuracy=0.010937
+2022-05-11 10:12:33,747 Node[0] Epoch[0] Batch [8800-8820]	Speed: 2288.16 samples/sec	accuracy=0.009375
+2022-05-11 10:12:34,875 Node[0] Epoch[0] Batch [8820-8840]	Speed: 2269.33 samples/sec	accuracy=0.008594
+2022-05-11 10:12:35,991 Node[0] Epoch[0] Batch [8840-8860]	Speed: 2292.99 samples/sec	accuracy=0.007031
+2022-05-11 10:12:37,109 Node[0] Epoch[0] Batch [8860-8880]	Speed: 2290.54 samples/sec	accuracy=0.009375
+2022-05-11 10:12:38,237 Node[0] Epoch[0] Batch [8880-8900]	Speed: 2269.46 samples/sec	accuracy=0.006250
+2022-05-11 10:12:39,360 Node[0] Epoch[0] Batch [8900-8920]	Speed: 2279.02 samples/sec	accuracy=0.007031
+2022-05-11 10:12:40,481 Node[0] Epoch[0] Batch [8920-8940]	Speed: 2283.94 samples/sec	accuracy=0.012500
+2022-05-11 10:12:41,604 Node[0] Epoch[0] Batch [8940-8960]	Speed: 2279.60 samples/sec	accuracy=0.007812
+2022-05-11 10:12:42,726 Node[0] Epoch[0] Batch [8960-8980]	Speed: 2281.04 samples/sec	accuracy=0.011719
+2022-05-11 10:12:43,841 Node[0] Epoch[0] Batch [8980-9000]	Speed: 2295.79 samples/sec	accuracy=0.010156
+2022-05-11 10:12:44,967 Node[0] Epoch[0] Batch [9000-9020]	Speed: 2274.79 samples/sec	accuracy=0.007031
+2022-05-11 10:12:46,089 Node[0] Epoch[0] Batch [9020-9040]	Speed: 2281.88 samples/sec	accuracy=0.005469
+2022-05-11 10:12:47,209 Node[0] Epoch[0] Batch [9040-9060]	Speed: 2284.39 samples/sec	accuracy=0.009375
+2022-05-11 10:12:48,332 Node[0] Epoch[0] Batch [9060-9080]	Speed: 2280.19 samples/sec	accuracy=0.009375
+2022-05-11 10:12:49,456 Node[0] Epoch[0] Batch [9080-9100]	Speed: 2278.28 samples/sec	accuracy=0.004687
+2022-05-11 10:12:50,578 Node[0] Epoch[0] Batch [9100-9120]	Speed: 2281.56 samples/sec	accuracy=0.007031
+2022-05-11 10:12:51,697 Node[0] Epoch[0] Batch [9120-9140]	Speed: 2288.32 samples/sec	accuracy=0.007812
+2022-05-11 10:12:52,818 Node[0] Epoch[0] Batch [9140-9160]	Speed: 2283.75 samples/sec	accuracy=0.012500
+2022-05-11 10:12:53,939 Node[0] Epoch[0] Batch [9160-9180]	Speed: 2283.74 samples/sec	accuracy=0.005469
+2022-05-11 10:12:55,062 Node[0] Epoch[0] Batch [9180-9200]	Speed: 2278.78 samples/sec	accuracy=0.007812
+2022-05-11 10:12:56,184 Node[0] Epoch[0] Batch [9200-9220]	Speed: 2281.10 samples/sec	accuracy=0.010156
+2022-05-11 10:12:57,306 Node[0] Epoch[0] Batch [9220-9240]	Speed: 2282.31 samples/sec	accuracy=0.005469
+2022-05-11 10:12:58,427 Node[0] Epoch[0] Batch [9240-9260]	Speed: 2283.94 samples/sec	accuracy=0.014063
+2022-05-11 10:12:59,550 Node[0] Epoch[0] Batch [9260-9280]	Speed: 2278.70 samples/sec	accuracy=0.007812
+2022-05-11 10:13:00,671 Node[0] Epoch[0] Batch [9280-9300]	Speed: 2284.58 samples/sec	accuracy=0.006250
+2022-05-11 10:13:01,788 Node[0] Epoch[0] Batch [9300-9320]	Speed: 2291.95 samples/sec	accuracy=0.007812
+2022-05-11 10:13:02,911 Node[0] Epoch[0] Batch [9320-9340]	Speed: 2278.51 samples/sec	accuracy=0.003125
+2022-05-11 10:13:04,031 Node[0] Epoch[0] Batch [9340-9360]	Speed: 2287.05 samples/sec	accuracy=0.007031
+2022-05-11 10:13:05,147 Node[0] Epoch[0] Batch [9360-9380]	Speed: 2292.46 samples/sec	accuracy=0.004687
+2022-05-11 10:13:06,269 Node[0] Epoch[0] Batch [9380-9400]	Speed: 2282.44 samples/sec	accuracy=0.007031
+2022-05-11 10:13:07,389 Node[0] Epoch[0] Batch [9400-9420]	Speed: 2286.35 samples/sec	accuracy=0.007812
+2022-05-11 10:13:10,038 Node[0] Epoch[0] Batch [9420-9440]	Speed: 966.24 samples/sec	accuracy=0.009375
+2022-05-11 10:13:11,154 Node[0] Epoch[0] Batch [9440-9460]	Speed: 2294.10 samples/sec	accuracy=0.008594
+2022-05-11 10:13:12,268 Node[0] Epoch[0] Batch [9460-9480]	Speed: 2298.02 samples/sec	accuracy=0.009375
+2022-05-11 10:13:13,388 Node[0] Epoch[0] Batch [9480-9500]	Speed: 2284.84 samples/sec	accuracy=0.006250
+2022-05-11 10:13:14,498 Node[0] Epoch[0] Batch [9500-9520]	Speed: 2308.05 samples/sec	accuracy=0.010937
+2022-05-11 10:13:15,618 Node[0] Epoch[0] Batch [9520-9540]	Speed: 2284.91 samples/sec	accuracy=0.009375
+2022-05-11 10:13:16,740 Node[0] Epoch[0] Batch [9540-9560]	Speed: 2281.08 samples/sec	accuracy=0.007812
+2022-05-11 10:13:17,855 Node[0] Epoch[0] Batch [9560-9580]	Speed: 2297.31 samples/sec	accuracy=0.007031
+2022-05-11 10:13:18,973 Node[0] Epoch[0] Batch [9580-9600]	Speed: 2289.40 samples/sec	accuracy=0.006250
+2022-05-11 10:13:20,091 Node[0] Epoch[0] Batch [9600-9620]	Speed: 2289.71 samples/sec	accuracy=0.003906
+2022-05-11 10:13:21,208 Node[0] Epoch[0] Batch [9620-9640]	Speed: 2290.38 samples/sec	accuracy=0.003125
+2022-05-11 10:13:22,326 Node[0] Epoch[0] Batch [9640-9660]	Speed: 2290.27 samples/sec	accuracy=0.006250
+2022-05-11 10:13:23,444 Node[0] Epoch[0] Batch [9660-9680]	Speed: 2289.90 samples/sec	accuracy=0.008594
+2022-05-11 10:13:24,560 Node[0] Epoch[0] Batch [9680-9700]	Speed: 2293.96 samples/sec	accuracy=0.006250
+2022-05-11 10:13:25,674 Node[0] Epoch[0] Batch [9700-9720]	Speed: 2298.61 samples/sec	accuracy=0.007031
+2022-05-11 10:13:26,785 Node[0] Epoch[0] Batch [9720-9740]	Speed: 2303.14 samples/sec	accuracy=0.003906
+2022-05-11 10:13:27,898 Node[0] Epoch[0] Batch [9740-9760]	Speed: 2301.95 samples/sec	accuracy=0.008594
+2022-05-11 10:13:29,013 Node[0] Epoch[0] Batch [9760-9780]	Speed: 2295.20 samples/sec	accuracy=0.005469
+2022-05-11 10:13:30,127 Node[0] Epoch[0] Batch [9780-9800]	Speed: 2297.74 samples/sec	accuracy=0.007031
+2022-05-11 10:13:31,238 Node[0] Epoch[0] Batch [9800-9820]	Speed: 2303.52 samples/sec	accuracy=0.007031
+2022-05-11 10:13:32,352 Node[0] Epoch[0] Batch [9820-9840]	Speed: 2299.20 samples/sec	accuracy=0.008594
+2022-05-11 10:13:33,467 Node[0] Epoch[0] Batch [9840-9860]	Speed: 2295.35 samples/sec	accuracy=0.002344
+2022-05-11 10:13:34,584 Node[0] Epoch[0] Batch [9860-9880]	Speed: 2291.40 samples/sec	accuracy=0.006250
+2022-05-11 10:13:35,701 Node[0] Epoch[0] Batch [9880-9900]	Speed: 2292.93 samples/sec	accuracy=0.003125
+2022-05-11 10:13:36,810 Node[0] Epoch[0] Batch [9900-9920]	Speed: 2307.82 samples/sec	accuracy=0.005469
+2022-05-11 10:13:37,924 Node[0] Epoch[0] Batch [9920-9940]	Speed: 2297.78 samples/sec	accuracy=0.005469
+2022-05-11 10:13:39,037 Node[0] Epoch[0] Batch [9940-9960]	Speed: 2300.49 samples/sec	accuracy=0.009375
+2022-05-11 10:13:40,156 Node[0] Epoch[0] Batch [9960-9980]	Speed: 2288.17 samples/sec	accuracy=0.007812
+2022-05-11 10:13:41,272 Node[0] Epoch[0] Batch [9980-10000]	Speed: 2294.50 samples/sec	accuracy=0.007812
+:::MLLOG {"namespace": "", "time_ms": 1652264021781, "event_type": "INTERVAL_END", "key": "epoch_stop", "value": null, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 984, "epoch_num": 1}}
+2022-05-11 10:13:41,782 Node[0] Epoch[0] Time cost=568.404
+:::MLLOG {"namespace": "", "time_ms": 1652264021782, "event_type": "POINT_IN_TIME", "key": "tracked_stats", "value": {"imgs_sec": 2253.972932946286}, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1000, "step": 1}}
+:::MLLOG {"namespace": "", "time_ms": 1652264021782, "event_type": "POINT_IN_TIME", "key": "throughput", "value": 2253.972932946286, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1003}}
+:::MLLOG {"namespace": "", "time_ms": 1652264021782, "event_type": "INTERVAL_START", "key": "epoch_start", "value": null, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 913, "epoch_num": 2}}
+2022-05-11 10:13:42,941 Node[0] Epoch[1] Batch [0-20]	Speed: 2300.79 samples/sec	accuracy=0.010417
+2022-05-11 10:13:44,054 Node[0] Epoch[1] Batch [20-40]	Speed: 2299.71 samples/sec	accuracy=0.011719
+2022-05-11 10:13:45,166 Node[0] Epoch[1] Batch [40-60]	Speed: 2302.81 samples/sec	accuracy=0.005469
+2022-05-11 10:13:46,277 Node[0] Epoch[1] Batch [60-80]	Speed: 2302.99 samples/sec	accuracy=0.007812
+2022-05-11 10:13:47,388 Node[0] Epoch[1] Batch [80-100]	Speed: 2305.31 samples/sec	accuracy=0.004687
+2022-05-11 10:13:48,497 Node[0] Epoch[1] Batch [100-120]	Speed: 2307.34 samples/sec	accuracy=0.003906
+2022-05-11 10:13:49,607 Node[0] Epoch[1] Batch [120-140]	Speed: 2306.43 samples/sec	accuracy=0.003125
+2022-05-11 10:13:50,721 Node[0] Epoch[1] Batch [140-160]	Speed: 2299.52 samples/sec	accuracy=0.003906
+2022-05-11 10:13:51,831 Node[0] Epoch[1] Batch [160-180]	Speed: 2304.78 samples/sec	accuracy=0.005469
+2022-05-11 10:13:52,941 Node[0] Epoch[1] Batch [180-200]	Speed: 2306.25 samples/sec	accuracy=0.005469
+2022-05-11 10:13:54,052 Node[0] Epoch[1] Batch [200-220]	Speed: 2304.00 samples/sec	accuracy=0.008594
+2022-05-11 10:13:55,163 Node[0] Epoch[1] Batch [220-240]	Speed: 2305.61 samples/sec	accuracy=0.005469
+2022-05-11 10:13:56,275 Node[0] Epoch[1] Batch [240-260]	Speed: 2301.69 samples/sec	accuracy=0.008594
+2022-05-11 10:13:57,390 Node[0] Epoch[1] Batch [260-280]	Speed: 2295.65 samples/sec	accuracy=0.004687
+2022-05-11 10:13:58,498 Node[0] Epoch[1] Batch [280-300]	Speed: 2310.00 samples/sec	accuracy=0.005469
+2022-05-11 10:13:59,620 Node[0] Epoch[1] Batch [300-320]	Speed: 2282.24 samples/sec	accuracy=0.008594
+2022-05-11 10:14:00,738 Node[0] Epoch[1] Batch [320-340]	Speed: 2290.80 samples/sec	accuracy=0.001563
+2022-05-11 10:14:01,854 Node[0] Epoch[1] Batch [340-360]	Speed: 2293.83 samples/sec	accuracy=0.003125
+2022-05-11 10:14:02,971 Node[0] Epoch[1] Batch [360-380]	Speed: 2291.48 samples/sec	accuracy=0.006250
+2022-05-11 10:14:04,087 Node[0] Epoch[1] Batch [380-400]	Speed: 2293.24 samples/sec	accuracy=0.003906
+2022-05-11 10:14:05,204 Node[0] Epoch[1] Batch [400-420]	Speed: 2291.75 samples/sec	accuracy=0.007812
+2022-05-11 10:14:06,314 Node[0] Epoch[1] Batch [420-440]	Speed: 2306.54 samples/sec	accuracy=0.003906
+2022-05-11 10:14:07,429 Node[0] Epoch[1] Batch [440-460]	Speed: 2296.70 samples/sec	accuracy=0.004687
+2022-05-11 10:14:08,542 Node[0] Epoch[1] Batch [460-480]	Speed: 2298.94 samples/sec	accuracy=0.009375
+2022-05-11 10:14:09,658 Node[0] Epoch[1] Batch [480-500]	Speed: 2295.19 samples/sec	accuracy=0.005469
+2022-05-11 10:14:10,777 Node[0] Epoch[1] Batch [500-520]	Speed: 2287.57 samples/sec	accuracy=0.004687
+2022-05-11 10:14:11,896 Node[0] Epoch[1] Batch [520-540]	Speed: 2287.57 samples/sec	accuracy=0.003906
+2022-05-11 10:14:13,013 Node[0] Epoch[1] Batch [540-560]	Speed: 2290.87 samples/sec	accuracy=0.004687
+2022-05-11 10:14:14,129 Node[0] Epoch[1] Batch [560-580]	Speed: 2294.60 samples/sec	accuracy=0.006250
+2022-05-11 10:14:15,243 Node[0] Epoch[1] Batch [580-600]	Speed: 2296.95 samples/sec	accuracy=0.006250
+2022-05-11 10:14:16,362 Node[0] Epoch[1] Batch [600-620]	Speed: 2287.92 samples/sec	accuracy=0.005469
+2022-05-11 10:14:17,478 Node[0] Epoch[1] Batch [620-640]	Speed: 2294.80 samples/sec	accuracy=0.008594
+2022-05-11 10:14:18,595 Node[0] Epoch[1] Batch [640-660]	Speed: 2292.29 samples/sec	accuracy=0.007031
+2022-05-11 10:14:19,710 Node[0] Epoch[1] Batch [660-680]	Speed: 2295.80 samples/sec	accuracy=0.008594
+2022-05-11 10:14:20,827 Node[0] Epoch[1] Batch [680-700]	Speed: 2290.76 samples/sec	accuracy=0.000781
+2022-05-11 10:14:21,943 Node[0] Epoch[1] Batch [700-720]	Speed: 2294.78 samples/sec	accuracy=0.001563
+2022-05-11 10:14:23,059 Node[0] Epoch[1] Batch [720-740]	Speed: 2293.81 samples/sec	accuracy=0.003906
+2022-05-11 10:14:24,175 Node[0] Epoch[1] Batch [740-760]	Speed: 2293.74 samples/sec	accuracy=0.004687
+2022-05-11 10:14:25,293 Node[0] Epoch[1] Batch [760-780]	Speed: 2290.12 samples/sec	accuracy=0.004687
+2022-05-11 10:14:26,411 Node[0] Epoch[1] Batch [780-800]	Speed: 2289.09 samples/sec	accuracy=0.006250
+2022-05-11 10:14:27,522 Node[0] Epoch[1] Batch [800-820]	Speed: 2305.34 samples/sec	accuracy=0.007812
+2022-05-11 10:14:28,636 Node[0] Epoch[1] Batch [820-840]	Speed: 2297.18 samples/sec	accuracy=0.006250
+2022-05-11 10:14:29,750 Node[0] Epoch[1] Batch [840-860]	Speed: 2297.58 samples/sec	accuracy=0.008594
+2022-05-11 10:14:30,865 Node[0] Epoch[1] Batch [860-880]	Speed: 2295.64 samples/sec	accuracy=0.004687
+2022-05-11 10:14:31,979 Node[0] Epoch[1] Batch [880-900]	Speed: 2299.01 samples/sec	accuracy=0.005469
+2022-05-11 10:14:33,091 Node[0] Epoch[1] Batch [900-920]	Speed: 2302.96 samples/sec	accuracy=0.003906
+2022-05-11 10:14:34,204 Node[0] Epoch[1] Batch [920-940]	Speed: 2299.48 samples/sec	accuracy=0.003125
+2022-05-11 10:14:35,317 Node[0] Epoch[1] Batch [940-960]	Speed: 2299.40 samples/sec	accuracy=0.010156
+2022-05-11 10:14:36,430 Node[0] Epoch[1] Batch [960-980]	Speed: 2299.95 samples/sec	accuracy=0.003906
+2022-05-11 10:14:37,541 Node[0] Epoch[1] Batch [980-1000]	Speed: 2304.99 samples/sec	accuracy=0.003906
+2022-05-11 10:14:38,656 Node[0] Epoch[1] Batch [1000-1020]	Speed: 2294.91 samples/sec	accuracy=0.006250
+2022-05-11 10:14:39,770 Node[0] Epoch[1] Batch [1020-1040]	Speed: 2299.51 samples/sec	accuracy=0.003906
+2022-05-11 10:14:40,877 Node[0] Epoch[1] Batch [1040-1060]	Speed: 2312.62 samples/sec	accuracy=0.006250
+2022-05-11 10:14:41,984 Node[0] Epoch[1] Batch [1060-1080]	Speed: 2312.32 samples/sec	accuracy=0.006250
+2022-05-11 10:14:43,090 Node[0] Epoch[1] Batch [1080-1100]	Speed: 2314.12 samples/sec	accuracy=0.007812
+2022-05-11 10:14:44,195 Node[0] Epoch[1] Batch [1100-1120]	Speed: 2316.92 samples/sec	accuracy=0.007031
+2022-05-11 10:14:45,303 Node[0] Epoch[1] Batch [1120-1140]	Speed: 2311.41 samples/sec	accuracy=0.003906
+2022-05-11 10:14:46,410 Node[0] Epoch[1] Batch [1140-1160]	Speed: 2312.07 samples/sec	accuracy=0.004687
+2022-05-11 10:14:47,519 Node[0] Epoch[1] Batch [1160-1180]	Speed: 2307.50 samples/sec	accuracy=0.007812
+2022-05-11 10:14:48,625 Node[0] Epoch[1] Batch [1180-1200]	Speed: 2314.34 samples/sec	accuracy=0.005469
+2022-05-11 10:14:49,733 Node[0] Epoch[1] Batch [1200-1220]	Speed: 2311.64 samples/sec	accuracy=0.006250
+2022-05-11 10:14:50,841 Node[0] Epoch[1] Batch [1220-1240]	Speed: 2310.84 samples/sec	accuracy=0.007812
+2022-05-11 10:14:51,954 Node[0] Epoch[1] Batch [1240-1260]	Speed: 2298.72 samples/sec	accuracy=0.005469
+2022-05-11 10:14:53,071 Node[0] Epoch[1] Batch [1260-1280]	Speed: 2292.91 samples/sec	accuracy=0.010156
+2022-05-11 10:14:54,182 Node[0] Epoch[1] Batch [1280-1300]	Speed: 2303.61 samples/sec	accuracy=0.005469
+2022-05-11 10:14:55,293 Node[0] Epoch[1] Batch [1300-1320]	Speed: 2303.63 samples/sec	accuracy=0.004687
+2022-05-11 10:14:56,408 Node[0] Epoch[1] Batch [1320-1340]	Speed: 2296.22 samples/sec	accuracy=0.007812
+2022-05-11 10:14:57,513 Node[0] Epoch[1] Batch [1340-1360]	Speed: 2316.96 samples/sec	accuracy=0.005469
+2022-05-11 10:14:58,618 Node[0] Epoch[1] Batch [1360-1380]	Speed: 2317.13 samples/sec	accuracy=0.006250
+2022-05-11 10:14:59,722 Node[0] Epoch[1] Batch [1380-1400]	Speed: 2318.71 samples/sec	accuracy=0.010156
+2022-05-11 10:15:00,827 Node[0] Epoch[1] Batch [1400-1420]	Speed: 2316.32 samples/sec	accuracy=0.007031
+2022-05-11 10:15:01,948 Node[0] Epoch[1] Batch [1420-1440]	Speed: 2283.79 samples/sec	accuracy=0.004687
+2022-05-11 10:15:03,059 Node[0] Epoch[1] Batch [1440-1460]	Speed: 2304.00 samples/sec	accuracy=0.003125
+2022-05-11 10:15:04,170 Node[0] Epoch[1] Batch [1460-1480]	Speed: 2304.83 samples/sec	accuracy=0.010156
+2022-05-11 10:15:05,286 Node[0] Epoch[1] Batch [1480-1500]	Speed: 2294.53 samples/sec	accuracy=0.005469
+2022-05-11 10:15:06,400 Node[0] Epoch[1] Batch [1500-1520]	Speed: 2297.60 samples/sec	accuracy=0.006250
+2022-05-11 10:15:07,512 Node[0] Epoch[1] Batch [1520-1540]	Speed: 2302.29 samples/sec	accuracy=0.004687
+2022-05-11 10:15:08,625 Node[0] Epoch[1] Batch [1540-1560]	Speed: 2300.36 samples/sec	accuracy=0.006250
+2022-05-11 10:15:09,739 Node[0] Epoch[1] Batch [1560-1580]	Speed: 2297.96 samples/sec	accuracy=0.005469
+2022-05-11 10:15:10,853 Node[0] Epoch[1] Batch [1580-1600]	Speed: 2297.19 samples/sec	accuracy=0.006250
+2022-05-11 10:15:11,970 Node[0] Epoch[1] Batch [1600-1620]	Speed: 2292.29 samples/sec	accuracy=0.008594
+2022-05-11 10:15:13,086 Node[0] Epoch[1] Batch [1620-1640]	Speed: 2294.63 samples/sec	accuracy=0.007031
+2022-05-11 10:15:14,202 Node[0] Epoch[1] Batch [1640-1660]	Speed: 2293.52 samples/sec	accuracy=0.004687
+2022-05-11 10:15:15,316 Node[0] Epoch[1] Batch [1660-1680]	Speed: 2297.97 samples/sec	accuracy=0.008594
+2022-05-11 10:15:16,429 Node[0] Epoch[1] Batch [1680-1700]	Speed: 2298.95 samples/sec	accuracy=0.007031
+2022-05-11 10:15:17,544 Node[0] Epoch[1] Batch [1700-1720]	Speed: 2295.67 samples/sec	accuracy=0.008594
+2022-05-11 10:15:18,661 Node[0] Epoch[1] Batch [1720-1740]	Speed: 2292.38 samples/sec	accuracy=0.008594
+2022-05-11 10:15:19,778 Node[0] Epoch[1] Batch [1740-1760]	Speed: 2292.86 samples/sec	accuracy=0.008594
+2022-05-11 10:15:20,898 Node[0] Epoch[1] Batch [1760-1780]	Speed: 2285.75 samples/sec	accuracy=0.004687
+2022-05-11 10:15:22,014 Node[0] Epoch[1] Batch [1780-1800]	Speed: 2293.89 samples/sec	accuracy=0.003125
+2022-05-11 10:15:23,130 Node[0] Epoch[1] Batch [1800-1820]	Speed: 2292.70 samples/sec	accuracy=0.006250
+2022-05-11 10:15:24,246 Node[0] Epoch[1] Batch [1820-1840]	Speed: 2293.62 samples/sec	accuracy=0.009375
+2022-05-11 10:15:25,366 Node[0] Epoch[1] Batch [1840-1860]	Speed: 2286.68 samples/sec	accuracy=0.007812
+2022-05-11 10:15:26,482 Node[0] Epoch[1] Batch [1860-1880]	Speed: 2294.43 samples/sec	accuracy=0.008594
+2022-05-11 10:15:27,596 Node[0] Epoch[1] Batch [1880-1900]	Speed: 2297.33 samples/sec	accuracy=0.005469
+2022-05-11 10:15:28,711 Node[0] Epoch[1] Batch [1900-1920]	Speed: 2296.19 samples/sec	accuracy=0.007812
+2022-05-11 10:15:29,828 Node[0] Epoch[1] Batch [1920-1940]	Speed: 2291.80 samples/sec	accuracy=0.010937
+2022-05-11 10:15:30,943 Node[0] Epoch[1] Batch [1940-1960]	Speed: 2296.31 samples/sec	accuracy=0.009375
+2022-05-11 10:15:32,054 Node[0] Epoch[1] Batch [1960-1980]	Speed: 2304.60 samples/sec	accuracy=0.008594
+2022-05-11 10:15:33,163 Node[0] Epoch[1] Batch [1980-2000]	Speed: 2308.27 samples/sec	accuracy=0.007812
+2022-05-11 10:15:34,274 Node[0] Epoch[1] Batch [2000-2020]	Speed: 2303.28 samples/sec	accuracy=0.007031
+2022-05-11 10:15:35,387 Node[0] Epoch[1] Batch [2020-2040]	Speed: 2299.44 samples/sec	accuracy=0.004687
+2022-05-11 10:15:36,496 Node[0] Epoch[1] Batch [2040-2060]	Speed: 2308.69 samples/sec	accuracy=0.009375
+2022-05-11 10:15:37,607 Node[0] Epoch[1] Batch [2060-2080]	Speed: 2305.20 samples/sec	accuracy=0.005469
+2022-05-11 10:15:38,717 Node[0] Epoch[1] Batch [2080-2100]	Speed: 2306.16 samples/sec	accuracy=0.003906
+2022-05-11 10:15:39,830 Node[0] Epoch[1] Batch [2100-2120]	Speed: 2300.71 samples/sec	accuracy=0.007812
+2022-05-11 10:15:40,936 Node[0] Epoch[1] Batch [2120-2140]	Speed: 2314.72 samples/sec	accuracy=0.003906
+2022-05-11 10:15:42,050 Node[0] Epoch[1] Batch [2140-2160]	Speed: 2297.82 samples/sec	accuracy=0.007031
+2022-05-11 10:15:43,164 Node[0] Epoch[1] Batch [2160-2180]	Speed: 2298.25 samples/sec	accuracy=0.007031
+2022-05-11 10:15:44,273 Node[0] Epoch[1] Batch [2180-2200]	Speed: 2307.17 samples/sec	accuracy=0.004687
+2022-05-11 10:15:45,389 Node[0] Epoch[1] Batch [2200-2220]	Speed: 2293.46 samples/sec	accuracy=0.006250
+2022-05-11 10:15:46,499 Node[0] Epoch[1] Batch [2220-2240]	Speed: 2307.51 samples/sec	accuracy=0.016406
+2022-05-11 10:15:47,606 Node[0] Epoch[1] Batch [2240-2260]	Speed: 2312.78 samples/sec	accuracy=0.006250
+2022-05-11 10:15:48,711 Node[0] Epoch[1] Batch [2260-2280]	Speed: 2315.31 samples/sec	accuracy=0.007031
+2022-05-11 10:15:49,814 Node[0] Epoch[1] Batch [2280-2300]	Speed: 2321.87 samples/sec	accuracy=0.007812
+2022-05-11 10:15:50,922 Node[0] Epoch[1] Batch [2300-2320]	Speed: 2310.28 samples/sec	accuracy=0.012500
+2022-05-11 10:15:52,031 Node[0] Epoch[1] Batch [2320-2340]	Speed: 2307.95 samples/sec	accuracy=0.010156
+2022-05-11 10:15:53,140 Node[0] Epoch[1] Batch [2340-2360]	Speed: 2308.73 samples/sec	accuracy=0.010156
+2022-05-11 10:15:54,253 Node[0] Epoch[1] Batch [2360-2380]	Speed: 2300.58 samples/sec	accuracy=0.008594
+2022-05-11 10:15:55,366 Node[0] Epoch[1] Batch [2380-2400]	Speed: 2299.30 samples/sec	accuracy=0.007812
+2022-05-11 10:15:56,483 Node[0] Epoch[1] Batch [2400-2420]	Speed: 2291.78 samples/sec	accuracy=0.008594
+2022-05-11 10:15:57,598 Node[0] Epoch[1] Batch [2420-2440]	Speed: 2296.22 samples/sec	accuracy=0.005469
+2022-05-11 10:15:58,713 Node[0] Epoch[1] Batch [2440-2460]	Speed: 2296.11 samples/sec	accuracy=0.007031
+2022-05-11 10:15:59,823 Node[0] Epoch[1] Batch [2460-2480]	Speed: 2306.78 samples/sec	accuracy=0.012500
+2022-05-11 10:16:00,935 Node[0] Epoch[1] Batch [2480-2500]	Speed: 2301.53 samples/sec	accuracy=0.014063
+2022-05-11 10:16:02,052 Node[0] Epoch[1] Batch [2500-2520]	Speed: 2292.34 samples/sec	accuracy=0.005469
+2022-05-11 10:16:03,175 Node[0] Epoch[1] Batch [2520-2540]	Speed: 2279.41 samples/sec	accuracy=0.010937
+2022-05-11 10:16:04,292 Node[0] Epoch[1] Batch [2540-2560]	Speed: 2291.06 samples/sec	accuracy=0.009375
+2022-05-11 10:16:05,406 Node[0] Epoch[1] Batch [2560-2580]	Speed: 2298.26 samples/sec	accuracy=0.007812
+2022-05-11 10:16:06,513 Node[0] Epoch[1] Batch [2580-2600]	Speed: 2313.75 samples/sec	accuracy=0.007031
+2022-05-11 10:16:07,630 Node[0] Epoch[1] Batch [2600-2620]	Speed: 2291.03 samples/sec	accuracy=0.007031
+2022-05-11 10:16:08,746 Node[0] Epoch[1] Batch [2620-2640]	Speed: 2293.92 samples/sec	accuracy=0.005469
+2022-05-11 10:16:09,861 Node[0] Epoch[1] Batch [2640-2660]	Speed: 2296.14 samples/sec	accuracy=0.014063
+2022-05-11 10:16:10,975 Node[0] Epoch[1] Batch [2660-2680]	Speed: 2297.40 samples/sec	accuracy=0.007031
+2022-05-11 10:16:12,078 Node[0] Epoch[1] Batch [2680-2700]	Speed: 2320.68 samples/sec	accuracy=0.012500
+2022-05-11 10:16:13,193 Node[0] Epoch[1] Batch [2700-2720]	Speed: 2295.96 samples/sec	accuracy=0.007812
+2022-05-11 10:16:14,309 Node[0] Epoch[1] Batch [2720-2740]	Speed: 2295.62 samples/sec	accuracy=0.008594
+2022-05-11 10:16:15,420 Node[0] Epoch[1] Batch [2740-2760]	Speed: 2302.50 samples/sec	accuracy=0.008594
+2022-05-11 10:16:16,531 Node[0] Epoch[1] Batch [2760-2780]	Speed: 2305.13 samples/sec	accuracy=0.007031
+2022-05-11 10:16:17,647 Node[0] Epoch[1] Batch [2780-2800]	Speed: 2294.90 samples/sec	accuracy=0.010156
+2022-05-11 10:16:18,758 Node[0] Epoch[1] Batch [2800-2820]	Speed: 2302.19 samples/sec	accuracy=0.007031
+2022-05-11 10:16:19,872 Node[0] Epoch[1] Batch [2820-2840]	Speed: 2298.67 samples/sec	accuracy=0.012500
+2022-05-11 10:16:20,986 Node[0] Epoch[1] Batch [2840-2860]	Speed: 2298.29 samples/sec	accuracy=0.006250
+2022-05-11 10:16:22,100 Node[0] Epoch[1] Batch [2860-2880]	Speed: 2298.77 samples/sec	accuracy=0.010937
+2022-05-11 10:16:23,212 Node[0] Epoch[1] Batch [2880-2900]	Speed: 2300.96 samples/sec	accuracy=0.006250
+2022-05-11 10:16:24,323 Node[0] Epoch[1] Batch [2900-2920]	Speed: 2304.67 samples/sec	accuracy=0.012500
+2022-05-11 10:16:25,434 Node[0] Epoch[1] Batch [2920-2940]	Speed: 2304.76 samples/sec	accuracy=0.007031
+2022-05-11 10:16:26,543 Node[0] Epoch[1] Batch [2940-2960]	Speed: 2307.41 samples/sec	accuracy=0.009375
+2022-05-11 10:16:27,655 Node[0] Epoch[1] Batch [2960-2980]	Speed: 2303.34 samples/sec	accuracy=0.010156
+2022-05-11 10:16:28,764 Node[0] Epoch[1] Batch [2980-3000]	Speed: 2307.18 samples/sec	accuracy=0.008594
+2022-05-11 10:16:29,875 Node[0] Epoch[1] Batch [3000-3020]	Speed: 2304.77 samples/sec	accuracy=0.009375
+2022-05-11 10:16:30,986 Node[0] Epoch[1] Batch [3020-3040]	Speed: 2305.20 samples/sec	accuracy=0.007812
+2022-05-11 10:16:32,096 Node[0] Epoch[1] Batch [3040-3060]	Speed: 2305.52 samples/sec	accuracy=0.008594
+2022-05-11 10:16:33,207 Node[0] Epoch[1] Batch [3060-3080]	Speed: 2303.54 samples/sec	accuracy=0.011719
+2022-05-11 10:16:34,319 Node[0] Epoch[1] Batch [3080-3100]	Speed: 2303.46 samples/sec	accuracy=0.011719
+2022-05-11 10:16:35,429 Node[0] Epoch[1] Batch [3100-3120]	Speed: 2305.77 samples/sec	accuracy=0.013281
+2022-05-11 10:16:36,540 Node[0] Epoch[1] Batch [3120-3140]	Speed: 2304.94 samples/sec	accuracy=0.009375
+2022-05-11 10:16:37,651 Node[0] Epoch[1] Batch [3140-3160]	Speed: 2303.49 samples/sec	accuracy=0.014063
+2022-05-11 10:16:38,761 Node[0] Epoch[1] Batch [3160-3180]	Speed: 2305.69 samples/sec	accuracy=0.010937
+2022-05-11 10:16:39,872 Node[0] Epoch[1] Batch [3180-3200]	Speed: 2303.99 samples/sec	accuracy=0.010156
+2022-05-11 10:16:40,983 Node[0] Epoch[1] Batch [3200-3220]	Speed: 2305.82 samples/sec	accuracy=0.013281
+2022-05-11 10:16:42,096 Node[0] Epoch[1] Batch [3220-3240]	Speed: 2300.02 samples/sec	accuracy=0.009375
+2022-05-11 10:16:43,208 Node[0] Epoch[1] Batch [3240-3260]	Speed: 2301.96 samples/sec	accuracy=0.008594
+2022-05-11 10:16:44,319 Node[0] Epoch[1] Batch [3260-3280]	Speed: 2303.20 samples/sec	accuracy=0.014844
+2022-05-11 10:16:45,435 Node[0] Epoch[1] Batch [3280-3300]	Speed: 2294.24 samples/sec	accuracy=0.007812
+2022-05-11 10:16:46,547 Node[0] Epoch[1] Batch [3300-3320]	Speed: 2302.13 samples/sec	accuracy=0.012500
+2022-05-11 10:16:47,662 Node[0] Epoch[1] Batch [3320-3340]	Speed: 2295.26 samples/sec	accuracy=0.010937
+2022-05-11 10:16:48,777 Node[0] Epoch[1] Batch [3340-3360]	Speed: 2297.02 samples/sec	accuracy=0.010156
+2022-05-11 10:16:49,890 Node[0] Epoch[1] Batch [3360-3380]	Speed: 2300.16 samples/sec	accuracy=0.010937
+2022-05-11 10:16:51,002 Node[0] Epoch[1] Batch [3380-3400]	Speed: 2300.91 samples/sec	accuracy=0.010937
+2022-05-11 10:16:52,117 Node[0] Epoch[1] Batch [3400-3420]	Speed: 2296.51 samples/sec	accuracy=0.007812
+2022-05-11 10:16:53,229 Node[0] Epoch[1] Batch [3420-3440]	Speed: 2303.42 samples/sec	accuracy=0.009375
+2022-05-11 10:16:54,342 Node[0] Epoch[1] Batch [3440-3460]	Speed: 2299.96 samples/sec	accuracy=0.009375
+2022-05-11 10:16:55,454 Node[0] Epoch[1] Batch [3460-3480]	Speed: 2302.35 samples/sec	accuracy=0.013281
+2022-05-11 10:16:56,566 Node[0] Epoch[1] Batch [3480-3500]	Speed: 2300.52 samples/sec	accuracy=0.014063
+2022-05-11 10:16:57,679 Node[0] Epoch[1] Batch [3500-3520]	Speed: 2300.85 samples/sec	accuracy=0.016406
+2022-05-11 10:16:58,791 Node[0] Epoch[1] Batch [3520-3540]	Speed: 2302.89 samples/sec	accuracy=0.014063
+2022-05-11 10:16:59,906 Node[0] Epoch[1] Batch [3540-3560]	Speed: 2294.72 samples/sec	accuracy=0.016406
+2022-05-11 10:17:01,021 Node[0] Epoch[1] Batch [3560-3580]	Speed: 2295.51 samples/sec	accuracy=0.014063
+2022-05-11 10:17:02,139 Node[0] Epoch[1] Batch [3580-3600]	Speed: 2290.97 samples/sec	accuracy=0.010937
+2022-05-11 10:17:03,256 Node[0] Epoch[1] Batch [3600-3620]	Speed: 2292.56 samples/sec	accuracy=0.010937
+2022-05-11 10:17:04,370 Node[0] Epoch[1] Batch [3620-3640]	Speed: 2296.62 samples/sec	accuracy=0.016406
+2022-05-11 10:17:05,487 Node[0] Epoch[1] Batch [3640-3660]	Speed: 2291.97 samples/sec	accuracy=0.006250
+2022-05-11 10:17:06,600 Node[0] Epoch[1] Batch [3660-3680]	Speed: 2299.33 samples/sec	accuracy=0.011719
+2022-05-11 10:17:07,720 Node[0] Epoch[1] Batch [3680-3700]	Speed: 2287.67 samples/sec	accuracy=0.014063
+2022-05-11 10:17:08,828 Node[0] Epoch[1] Batch [3700-3720]	Speed: 2310.32 samples/sec	accuracy=0.014844
+2022-05-11 10:17:09,942 Node[0] Epoch[1] Batch [3720-3740]	Speed: 2296.44 samples/sec	accuracy=0.010156
+2022-05-11 10:17:11,053 Node[0] Epoch[1] Batch [3740-3760]	Speed: 2304.54 samples/sec	accuracy=0.013281
+2022-05-11 10:17:12,161 Node[0] Epoch[1] Batch [3760-3780]	Speed: 2310.49 samples/sec	accuracy=0.012500
+2022-05-11 10:17:13,270 Node[0] Epoch[1] Batch [3780-3800]	Speed: 2309.68 samples/sec	accuracy=0.007031
+2022-05-11 10:17:14,378 Node[0] Epoch[1] Batch [3800-3820]	Speed: 2310.29 samples/sec	accuracy=0.014844
+2022-05-11 10:17:15,487 Node[0] Epoch[1] Batch [3820-3840]	Speed: 2308.58 samples/sec	accuracy=0.012500
+2022-05-11 10:17:16,595 Node[0] Epoch[1] Batch [3840-3860]	Speed: 2308.66 samples/sec	accuracy=0.019531
+2022-05-11 10:17:17,702 Node[0] Epoch[1] Batch [3860-3880]	Speed: 2313.03 samples/sec	accuracy=0.014063
+2022-05-11 10:17:18,813 Node[0] Epoch[1] Batch [3880-3900]	Speed: 2304.11 samples/sec	accuracy=0.010937
+2022-05-11 10:17:19,927 Node[0] Epoch[1] Batch [3900-3920]	Speed: 2299.37 samples/sec	accuracy=0.011719
+2022-05-11 10:17:21,043 Node[0] Epoch[1] Batch [3920-3940]	Speed: 2293.95 samples/sec	accuracy=0.015625
+2022-05-11 10:17:22,159 Node[0] Epoch[1] Batch [3940-3960]	Speed: 2292.60 samples/sec	accuracy=0.014063
+2022-05-11 10:17:23,278 Node[0] Epoch[1] Batch [3960-3980]	Speed: 2287.86 samples/sec	accuracy=0.014844
+2022-05-11 10:17:24,395 Node[0] Epoch[1] Batch [3980-4000]	Speed: 2293.15 samples/sec	accuracy=0.012500
+2022-05-11 10:17:25,509 Node[0] Epoch[1] Batch [4000-4020]	Speed: 2297.97 samples/sec	accuracy=0.017969
+2022-05-11 10:17:26,619 Node[0] Epoch[1] Batch [4020-4040]	Speed: 2305.91 samples/sec	accuracy=0.014844
+2022-05-11 10:17:27,730 Node[0] Epoch[1] Batch [4040-4060]	Speed: 2304.31 samples/sec	accuracy=0.015625
+2022-05-11 10:17:28,844 Node[0] Epoch[1] Batch [4060-4080]	Speed: 2296.54 samples/sec	accuracy=0.009375
+2022-05-11 10:17:29,959 Node[0] Epoch[1] Batch [4080-4100]	Speed: 2297.00 samples/sec	accuracy=0.017969
+2022-05-11 10:17:31,075 Node[0] Epoch[1] Batch [4100-4120]	Speed: 2294.43 samples/sec	accuracy=0.016406
+2022-05-11 10:17:32,190 Node[0] Epoch[1] Batch [4120-4140]	Speed: 2295.92 samples/sec	accuracy=0.018750
+2022-05-11 10:17:33,302 Node[0] Epoch[1] Batch [4140-4160]	Speed: 2301.71 samples/sec	accuracy=0.021875
+2022-05-11 10:17:34,423 Node[0] Epoch[1] Batch [4160-4180]	Speed: 2283.72 samples/sec	accuracy=0.014844
+2022-05-11 10:17:35,539 Node[0] Epoch[1] Batch [4180-4200]	Speed: 2292.83 samples/sec	accuracy=0.014063
+2022-05-11 10:17:36,655 Node[0] Epoch[1] Batch [4200-4220]	Speed: 2295.09 samples/sec	accuracy=0.013281
+2022-05-11 10:17:37,770 Node[0] Epoch[1] Batch [4220-4240]	Speed: 2295.15 samples/sec	accuracy=0.015625
+2022-05-11 10:17:38,885 Node[0] Epoch[1] Batch [4240-4260]	Speed: 2296.13 samples/sec	accuracy=0.017188
+2022-05-11 10:17:39,999 Node[0] Epoch[1] Batch [4260-4280]	Speed: 2299.33 samples/sec	accuracy=0.016406
+2022-05-11 10:17:41,102 Node[0] Epoch[1] Batch [4280-4300]	Speed: 2320.28 samples/sec	accuracy=0.017969
+2022-05-11 10:17:42,212 Node[0] Epoch[1] Batch [4300-4320]	Speed: 2305.69 samples/sec	accuracy=0.017188
+2022-05-11 10:17:43,316 Node[0] Epoch[1] Batch [4320-4340]	Speed: 2319.68 samples/sec	accuracy=0.014063
+2022-05-11 10:17:44,430 Node[0] Epoch[1] Batch [4340-4360]	Speed: 2297.39 samples/sec	accuracy=0.021875
+2022-05-11 10:17:46,634 Node[0] Epoch[1] Batch [4360-4380]	Speed: 1161.69 samples/sec	accuracy=0.020313
+2022-05-11 10:17:47,750 Node[0] Epoch[1] Batch [4380-4400]	Speed: 2293.32 samples/sec	accuracy=0.014063
+2022-05-11 10:17:48,868 Node[0] Epoch[1] Batch [4400-4420]	Speed: 2290.13 samples/sec	accuracy=0.020313
+2022-05-11 10:17:49,983 Node[0] Epoch[1] Batch [4420-4440]	Speed: 2295.90 samples/sec	accuracy=0.020313
+2022-05-11 10:17:51,098 Node[0] Epoch[1] Batch [4440-4460]	Speed: 2296.51 samples/sec	accuracy=0.025781
+2022-05-11 10:17:52,214 Node[0] Epoch[1] Batch [4460-4480]	Speed: 2293.52 samples/sec	accuracy=0.014844
+2022-05-11 10:17:53,327 Node[0] Epoch[1] Batch [4480-4500]	Speed: 2298.84 samples/sec	accuracy=0.016406
+2022-05-11 10:17:54,443 Node[0] Epoch[1] Batch [4500-4520]	Speed: 2294.96 samples/sec	accuracy=0.027344
+2022-05-11 10:17:55,559 Node[0] Epoch[1] Batch [4520-4540]	Speed: 2294.31 samples/sec	accuracy=0.025000
+2022-05-11 10:17:56,675 Node[0] Epoch[1] Batch [4540-4560]	Speed: 2293.20 samples/sec	accuracy=0.027344
+2022-05-11 10:17:57,791 Node[0] Epoch[1] Batch [4560-4580]	Speed: 2294.63 samples/sec	accuracy=0.020313
+2022-05-11 10:17:58,907 Node[0] Epoch[1] Batch [4580-4600]	Speed: 2293.22 samples/sec	accuracy=0.019531
+2022-05-11 10:18:00,021 Node[0] Epoch[1] Batch [4600-4620]	Speed: 2299.17 samples/sec	accuracy=0.027344
+2022-05-11 10:18:01,139 Node[0] Epoch[1] Batch [4620-4640]	Speed: 2287.97 samples/sec	accuracy=0.023438
+2022-05-11 10:18:02,254 Node[0] Epoch[1] Batch [4640-4660]	Speed: 2296.05 samples/sec	accuracy=0.021094
+2022-05-11 10:18:03,371 Node[0] Epoch[1] Batch [4660-4680]	Speed: 2293.30 samples/sec	accuracy=0.018750
+2022-05-11 10:18:04,487 Node[0] Epoch[1] Batch [4680-4700]	Speed: 2292.27 samples/sec	accuracy=0.017969
+2022-05-11 10:18:05,603 Node[0] Epoch[1] Batch [4700-4720]	Speed: 2295.59 samples/sec	accuracy=0.021875
+2022-05-11 10:18:06,717 Node[0] Epoch[1] Batch [4720-4740]	Speed: 2297.91 samples/sec	accuracy=0.018750
+2022-05-11 10:18:07,827 Node[0] Epoch[1] Batch [4740-4760]	Speed: 2305.46 samples/sec	accuracy=0.025000
+2022-05-11 10:18:08,941 Node[0] Epoch[1] Batch [4760-4780]	Speed: 2297.46 samples/sec	accuracy=0.021875
+2022-05-11 10:18:10,058 Node[0] Epoch[1] Batch [4780-4800]	Speed: 2293.38 samples/sec	accuracy=0.026562
+2022-05-11 10:18:11,163 Node[0] Epoch[1] Batch [4800-4820]	Speed: 2316.81 samples/sec	accuracy=0.019531
+2022-05-11 10:18:12,272 Node[0] Epoch[1] Batch [4820-4840]	Speed: 2308.12 samples/sec	accuracy=0.019531
+2022-05-11 10:18:13,379 Node[0] Epoch[1] Batch [4840-4860]	Speed: 2312.46 samples/sec	accuracy=0.024219
+2022-05-11 10:18:14,494 Node[0] Epoch[1] Batch [4860-4880]	Speed: 2295.29 samples/sec	accuracy=0.025000
+2022-05-11 10:18:15,610 Node[0] Epoch[1] Batch [4880-4900]	Speed: 2293.68 samples/sec	accuracy=0.021875
+2022-05-11 10:18:16,726 Node[0] Epoch[1] Batch [4900-4920]	Speed: 2293.42 samples/sec	accuracy=0.017188
+2022-05-11 10:18:17,832 Node[0] Epoch[1] Batch [4920-4940]	Speed: 2314.73 samples/sec	accuracy=0.030469
+2022-05-11 10:18:18,952 Node[0] Epoch[1] Batch [4940-4960]	Speed: 2286.27 samples/sec	accuracy=0.026562
+2022-05-11 10:18:20,059 Node[0] Epoch[1] Batch [4960-4980]	Speed: 2312.85 samples/sec	accuracy=0.032813
+2022-05-11 10:18:21,177 Node[0] Epoch[1] Batch [4980-5000]	Speed: 2290.46 samples/sec	accuracy=0.030469
+2022-05-11 10:18:22,286 Node[0] Epoch[1] Batch [5000-5020]	Speed: 2308.08 samples/sec	accuracy=0.036719
+2022-05-11 10:18:23,398 Node[0] Epoch[1] Batch [5020-5040]	Speed: 2301.61 samples/sec	accuracy=0.026562
+2022-05-11 10:18:24,512 Node[0] Epoch[1] Batch [5040-5060]	Speed: 2297.49 samples/sec	accuracy=0.024219
+2022-05-11 10:18:25,624 Node[0] Epoch[1] Batch [5060-5080]	Speed: 2302.80 samples/sec	accuracy=0.033594
+2022-05-11 10:18:26,746 Node[0] Epoch[1] Batch [5080-5100]	Speed: 2281.51 samples/sec	accuracy=0.021875
+2022-05-11 10:18:27,860 Node[0] Epoch[1] Batch [5100-5120]	Speed: 2297.60 samples/sec	accuracy=0.025000
+2022-05-11 10:18:28,979 Node[0] Epoch[1] Batch [5120-5140]	Speed: 2289.28 samples/sec	accuracy=0.019531
+2022-05-11 10:18:30,099 Node[0] Epoch[1] Batch [5140-5160]	Speed: 2285.65 samples/sec	accuracy=0.037500
+2022-05-11 10:18:31,218 Node[0] Epoch[1] Batch [5160-5180]	Speed: 2286.24 samples/sec	accuracy=0.031250
+2022-05-11 10:18:32,335 Node[0] Epoch[1] Batch [5180-5200]	Speed: 2292.49 samples/sec	accuracy=0.024219
+2022-05-11 10:18:33,449 Node[0] Epoch[1] Batch [5200-5220]	Speed: 2297.89 samples/sec	accuracy=0.032031
+2022-05-11 10:18:34,566 Node[0] Epoch[1] Batch [5220-5240]	Speed: 2292.14 samples/sec	accuracy=0.030469
+2022-05-11 10:18:35,682 Node[0] Epoch[1] Batch [5240-5260]	Speed: 2294.79 samples/sec	accuracy=0.032813
+2022-05-11 10:18:36,795 Node[0] Epoch[1] Batch [5260-5280]	Speed: 2298.18 samples/sec	accuracy=0.033594
+2022-05-11 10:18:37,909 Node[0] Epoch[1] Batch [5280-5300]	Speed: 2298.50 samples/sec	accuracy=0.026562
+2022-05-11 10:18:39,023 Node[0] Epoch[1] Batch [5300-5320]	Speed: 2298.39 samples/sec	accuracy=0.032813
+2022-05-11 10:18:40,129 Node[0] Epoch[1] Batch [5320-5340]	Speed: 2313.79 samples/sec	accuracy=0.032813
+2022-05-11 10:18:41,251 Node[0] Epoch[1] Batch [5340-5360]	Speed: 2282.95 samples/sec	accuracy=0.039844
+2022-05-11 10:18:42,366 Node[0] Epoch[1] Batch [5360-5380]	Speed: 2296.37 samples/sec	accuracy=0.020313
+2022-05-11 10:18:43,480 Node[0] Epoch[1] Batch [5380-5400]	Speed: 2296.92 samples/sec	accuracy=0.028125
+2022-05-11 10:18:44,595 Node[0] Epoch[1] Batch [5400-5420]	Speed: 2296.83 samples/sec	accuracy=0.027344
+2022-05-11 10:18:45,709 Node[0] Epoch[1] Batch [5420-5440]	Speed: 2296.85 samples/sec	accuracy=0.035937
+2022-05-11 10:18:46,826 Node[0] Epoch[1] Batch [5440-5460]	Speed: 2291.63 samples/sec	accuracy=0.035937
+2022-05-11 10:18:47,945 Node[0] Epoch[1] Batch [5460-5480]	Speed: 2288.16 samples/sec	accuracy=0.041406
+2022-05-11 10:18:49,055 Node[0] Epoch[1] Batch [5480-5500]	Speed: 2307.51 samples/sec	accuracy=0.032813
+2022-05-11 10:18:50,172 Node[0] Epoch[1] Batch [5500-5520]	Speed: 2290.70 samples/sec	accuracy=0.039844
+2022-05-11 10:18:51,292 Node[0] Epoch[1] Batch [5520-5540]	Speed: 2285.15 samples/sec	accuracy=0.035156
+2022-05-11 10:18:52,412 Node[0] Epoch[1] Batch [5540-5560]	Speed: 2286.37 samples/sec	accuracy=0.035937
+2022-05-11 10:18:53,529 Node[0] Epoch[1] Batch [5560-5580]	Speed: 2292.08 samples/sec	accuracy=0.033594
+2022-05-11 10:18:54,651 Node[0] Epoch[1] Batch [5580-5600]	Speed: 2282.22 samples/sec	accuracy=0.040625
+2022-05-11 10:18:55,770 Node[0] Epoch[1] Batch [5600-5620]	Speed: 2286.53 samples/sec	accuracy=0.047656
+2022-05-11 10:18:56,893 Node[0] Epoch[1] Batch [5620-5640]	Speed: 2280.28 samples/sec	accuracy=0.039062
+2022-05-11 10:18:58,012 Node[0] Epoch[1] Batch [5640-5660]	Speed: 2288.21 samples/sec	accuracy=0.036719
+2022-05-11 10:18:59,131 Node[0] Epoch[1] Batch [5660-5680]	Speed: 2286.66 samples/sec	accuracy=0.035156
+2022-05-11 10:19:00,249 Node[0] Epoch[1] Batch [5680-5700]	Speed: 2290.32 samples/sec	accuracy=0.035156
+2022-05-11 10:19:01,367 Node[0] Epoch[1] Batch [5700-5720]	Speed: 2290.79 samples/sec	accuracy=0.030469
+2022-05-11 10:19:02,487 Node[0] Epoch[1] Batch [5720-5740]	Speed: 2284.22 samples/sec	accuracy=0.032031
+2022-05-11 10:19:03,607 Node[0] Epoch[1] Batch [5740-5760]	Speed: 2286.91 samples/sec	accuracy=0.034375
+2022-05-11 10:19:04,724 Node[0] Epoch[1] Batch [5760-5780]	Speed: 2291.40 samples/sec	accuracy=0.041406
+2022-05-11 10:19:05,843 Node[0] Epoch[1] Batch [5780-5800]	Speed: 2286.72 samples/sec	accuracy=0.035937
+2022-05-11 10:19:06,962 Node[0] Epoch[1] Batch [5800-5820]	Speed: 2289.21 samples/sec	accuracy=0.044531
+2022-05-11 10:19:08,081 Node[0] Epoch[1] Batch [5820-5840]	Speed: 2287.34 samples/sec	accuracy=0.039062
+2022-05-11 10:19:09,199 Node[0] Epoch[1] Batch [5840-5860]	Speed: 2289.21 samples/sec	accuracy=0.036719
+2022-05-11 10:19:10,309 Node[0] Epoch[1] Batch [5860-5880]	Speed: 2306.56 samples/sec	accuracy=0.039062
+2022-05-11 10:19:11,424 Node[0] Epoch[1] Batch [5880-5900]	Speed: 2296.75 samples/sec	accuracy=0.040625
+2022-05-11 10:19:12,539 Node[0] Epoch[1] Batch [5900-5920]	Speed: 2294.73 samples/sec	accuracy=0.038281
+2022-05-11 10:19:13,655 Node[0] Epoch[1] Batch [5920-5940]	Speed: 2295.39 samples/sec	accuracy=0.047656
+2022-05-11 10:19:14,775 Node[0] Epoch[1] Batch [5940-5960]	Speed: 2285.30 samples/sec	accuracy=0.052344
+2022-05-11 10:19:15,895 Node[0] Epoch[1] Batch [5960-5980]	Speed: 2284.45 samples/sec	accuracy=0.049219
+2022-05-11 10:19:17,020 Node[0] Epoch[1] Batch [5980-6000]	Speed: 2275.78 samples/sec	accuracy=0.032813
+2022-05-11 10:19:18,133 Node[0] Epoch[1] Batch [6000-6020]	Speed: 2301.66 samples/sec	accuracy=0.040625
+2022-05-11 10:19:19,256 Node[0] Epoch[1] Batch [6020-6040]	Speed: 2278.92 samples/sec	accuracy=0.046875
+2022-05-11 10:19:20,373 Node[0] Epoch[1] Batch [6040-6060]	Speed: 2291.80 samples/sec	accuracy=0.040625
+2022-05-11 10:19:21,495 Node[0] Epoch[1] Batch [6060-6080]	Speed: 2281.40 samples/sec	accuracy=0.046094
+2022-05-11 10:19:22,615 Node[0] Epoch[1] Batch [6080-6100]	Speed: 2285.27 samples/sec	accuracy=0.054688
+2022-05-11 10:19:23,740 Node[0] Epoch[1] Batch [6100-6120]	Speed: 2275.72 samples/sec	accuracy=0.037500
+2022-05-11 10:19:24,849 Node[0] Epoch[1] Batch [6120-6140]	Speed: 2308.81 samples/sec	accuracy=0.032813
+2022-05-11 10:19:25,974 Node[0] Epoch[1] Batch [6140-6160]	Speed: 2275.35 samples/sec	accuracy=0.058594
+2022-05-11 10:19:27,094 Node[0] Epoch[1] Batch [6160-6180]	Speed: 2286.78 samples/sec	accuracy=0.046875
+2022-05-11 10:19:28,213 Node[0] Epoch[1] Batch [6180-6200]	Speed: 2286.25 samples/sec	accuracy=0.049219
+2022-05-11 10:19:29,332 Node[0] Epoch[1] Batch [6200-6220]	Speed: 2288.54 samples/sec	accuracy=0.039062
+2022-05-11 10:19:30,453 Node[0] Epoch[1] Batch [6220-6240]	Speed: 2284.48 samples/sec	accuracy=0.053125
+2022-05-11 10:19:31,569 Node[0] Epoch[1] Batch [6240-6260]	Speed: 2292.29 samples/sec	accuracy=0.042969
+2022-05-11 10:19:32,687 Node[0] Epoch[1] Batch [6260-6280]	Speed: 2290.76 samples/sec	accuracy=0.038281
+2022-05-11 10:19:33,805 Node[0] Epoch[1] Batch [6280-6300]	Speed: 2290.50 samples/sec	accuracy=0.047656
+2022-05-11 10:19:34,922 Node[0] Epoch[1] Batch [6300-6320]	Speed: 2290.92 samples/sec	accuracy=0.045312
+2022-05-11 10:19:36,040 Node[0] Epoch[1] Batch [6320-6340]	Speed: 2289.68 samples/sec	accuracy=0.045312
+2022-05-11 10:19:37,157 Node[0] Epoch[1] Batch [6340-6360]	Speed: 2291.62 samples/sec	accuracy=0.045312
+2022-05-11 10:19:38,275 Node[0] Epoch[1] Batch [6360-6380]	Speed: 2290.82 samples/sec	accuracy=0.055469
+2022-05-11 10:19:39,394 Node[0] Epoch[1] Batch [6380-6400]	Speed: 2287.80 samples/sec	accuracy=0.048438
+2022-05-11 10:19:40,509 Node[0] Epoch[1] Batch [6400-6420]	Speed: 2295.92 samples/sec	accuracy=0.042188
+2022-05-11 10:19:41,629 Node[0] Epoch[1] Batch [6420-6440]	Speed: 2284.79 samples/sec	accuracy=0.045312
+2022-05-11 10:19:42,752 Node[0] Epoch[1] Batch [6440-6460]	Speed: 2279.85 samples/sec	accuracy=0.042969
+2022-05-11 10:19:43,873 Node[0] Epoch[1] Batch [6460-6480]	Speed: 2284.35 samples/sec	accuracy=0.040625
+2022-05-11 10:19:44,984 Node[0] Epoch[1] Batch [6480-6500]	Speed: 2303.19 samples/sec	accuracy=0.048438
+2022-05-11 10:19:46,106 Node[0] Epoch[1] Batch [6500-6520]	Speed: 2282.33 samples/sec	accuracy=0.050000
+2022-05-11 10:19:47,227 Node[0] Epoch[1] Batch [6520-6540]	Speed: 2284.15 samples/sec	accuracy=0.057813
+2022-05-11 10:19:48,347 Node[0] Epoch[1] Batch [6540-6560]	Speed: 2285.16 samples/sec	accuracy=0.053906
+2022-05-11 10:19:49,464 Node[0] Epoch[1] Batch [6560-6580]	Speed: 2291.64 samples/sec	accuracy=0.050781
+2022-05-11 10:19:50,584 Node[0] Epoch[1] Batch [6580-6600]	Speed: 2286.62 samples/sec	accuracy=0.055469
+2022-05-11 10:19:51,705 Node[0] Epoch[1] Batch [6600-6620]	Speed: 2283.14 samples/sec	accuracy=0.053125
+2022-05-11 10:19:52,821 Node[0] Epoch[1] Batch [6620-6640]	Speed: 2293.56 samples/sec	accuracy=0.047656
+2022-05-11 10:19:53,941 Node[0] Epoch[1] Batch [6640-6660]	Speed: 2286.38 samples/sec	accuracy=0.054688
+2022-05-11 10:19:55,059 Node[0] Epoch[1] Batch [6660-6680]	Speed: 2289.63 samples/sec	accuracy=0.052344
+2022-05-11 10:19:56,178 Node[0] Epoch[1] Batch [6680-6700]	Speed: 2287.55 samples/sec	accuracy=0.042969
+2022-05-11 10:19:57,298 Node[0] Epoch[1] Batch [6700-6720]	Speed: 2284.67 samples/sec	accuracy=0.052344
+2022-05-11 10:19:58,419 Node[0] Epoch[1] Batch [6720-6740]	Speed: 2283.57 samples/sec	accuracy=0.057031
+2022-05-11 10:19:59,540 Node[0] Epoch[1] Batch [6740-6760]	Speed: 2283.49 samples/sec	accuracy=0.064062
+2022-05-11 10:20:00,660 Node[0] Epoch[1] Batch [6760-6780]	Speed: 2285.66 samples/sec	accuracy=0.057031
+2022-05-11 10:20:01,775 Node[0] Epoch[1] Batch [6780-6800]	Speed: 2297.39 samples/sec	accuracy=0.046094
+2022-05-11 10:20:02,893 Node[0] Epoch[1] Batch [6800-6820]	Speed: 2290.28 samples/sec	accuracy=0.057813
+2022-05-11 10:20:04,008 Node[0] Epoch[1] Batch [6820-6840]	Speed: 2295.53 samples/sec	accuracy=0.061719
+2022-05-11 10:20:05,124 Node[0] Epoch[1] Batch [6840-6860]	Speed: 2292.99 samples/sec	accuracy=0.053906
+2022-05-11 10:20:06,251 Node[0] Epoch[1] Batch [6860-6880]	Speed: 2272.77 samples/sec	accuracy=0.052344
+2022-05-11 10:20:07,362 Node[0] Epoch[1] Batch [6880-6900]	Speed: 2303.00 samples/sec	accuracy=0.057031
+2022-05-11 10:20:08,480 Node[0] Epoch[1] Batch [6900-6920]	Speed: 2290.30 samples/sec	accuracy=0.055469
+2022-05-11 10:20:09,602 Node[0] Epoch[1] Batch [6920-6940]	Speed: 2280.96 samples/sec	accuracy=0.051562
+2022-05-11 10:20:10,722 Node[0] Epoch[1] Batch [6940-6960]	Speed: 2286.22 samples/sec	accuracy=0.057813
+2022-05-11 10:20:11,842 Node[0] Epoch[1] Batch [6960-6980]	Speed: 2285.58 samples/sec	accuracy=0.057031
+2022-05-11 10:20:12,962 Node[0] Epoch[1] Batch [6980-7000]	Speed: 2284.99 samples/sec	accuracy=0.056250
+2022-05-11 10:20:14,085 Node[0] Epoch[1] Batch [7000-7020]	Speed: 2281.28 samples/sec	accuracy=0.067187
+2022-05-11 10:20:15,199 Node[0] Epoch[1] Batch [7020-7040]	Speed: 2296.25 samples/sec	accuracy=0.053125
+2022-05-11 10:20:16,318 Node[0] Epoch[1] Batch [7040-7060]	Speed: 2289.35 samples/sec	accuracy=0.060156
+2022-05-11 10:20:17,435 Node[0] Epoch[1] Batch [7060-7080]	Speed: 2290.37 samples/sec	accuracy=0.050781
+2022-05-11 10:20:18,550 Node[0] Epoch[1] Batch [7080-7100]	Speed: 2296.38 samples/sec	accuracy=0.062500
+2022-05-11 10:20:19,675 Node[0] Epoch[1] Batch [7100-7120]	Speed: 2275.29 samples/sec	accuracy=0.068750
+2022-05-11 10:20:20,795 Node[0] Epoch[1] Batch [7120-7140]	Speed: 2285.51 samples/sec	accuracy=0.056250
+2022-05-11 10:20:21,914 Node[0] Epoch[1] Batch [7140-7160]	Speed: 2289.40 samples/sec	accuracy=0.066406
+2022-05-11 10:20:23,031 Node[0] Epoch[1] Batch [7160-7180]	Speed: 2290.31 samples/sec	accuracy=0.064844
+2022-05-11 10:20:24,149 Node[0] Epoch[1] Batch [7180-7200]	Speed: 2290.49 samples/sec	accuracy=0.066406
+2022-05-11 10:20:25,268 Node[0] Epoch[1] Batch [7200-7220]	Speed: 2287.76 samples/sec	accuracy=0.063281
+2022-05-11 10:20:26,390 Node[0] Epoch[1] Batch [7220-7240]	Speed: 2282.18 samples/sec	accuracy=0.061719
+2022-05-11 10:20:27,504 Node[0] Epoch[1] Batch [7240-7260]	Speed: 2297.16 samples/sec	accuracy=0.062500
+2022-05-11 10:20:28,625 Node[0] Epoch[1] Batch [7260-7280]	Speed: 2284.33 samples/sec	accuracy=0.071875
+2022-05-11 10:20:29,739 Node[0] Epoch[1] Batch [7280-7300]	Speed: 2297.83 samples/sec	accuracy=0.071875
+2022-05-11 10:20:30,850 Node[0] Epoch[1] Batch [7300-7320]	Speed: 2304.41 samples/sec	accuracy=0.071094
+2022-05-11 10:20:31,960 Node[0] Epoch[1] Batch [7320-7340]	Speed: 2306.17 samples/sec	accuracy=0.055469
+2022-05-11 10:20:33,070 Node[0] Epoch[1] Batch [7340-7360]	Speed: 2305.90 samples/sec	accuracy=0.072656
+2022-05-11 10:20:34,180 Node[0] Epoch[1] Batch [7360-7380]	Speed: 2306.23 samples/sec	accuracy=0.080469
+2022-05-11 10:20:35,293 Node[0] Epoch[1] Batch [7380-7400]	Speed: 2299.79 samples/sec	accuracy=0.060937
+2022-05-11 10:20:36,411 Node[0] Epoch[1] Batch [7400-7420]	Speed: 2290.37 samples/sec	accuracy=0.068750
+2022-05-11 10:20:37,537 Node[0] Epoch[1] Batch [7420-7440]	Speed: 2274.33 samples/sec	accuracy=0.045312
+2022-05-11 10:20:38,655 Node[0] Epoch[1] Batch [7440-7460]	Speed: 2288.37 samples/sec	accuracy=0.067969
+2022-05-11 10:20:39,776 Node[0] Epoch[1] Batch [7460-7480]	Speed: 2283.93 samples/sec	accuracy=0.073438
+2022-05-11 10:20:40,896 Node[0] Epoch[1] Batch [7480-7500]	Speed: 2285.33 samples/sec	accuracy=0.070312
+2022-05-11 10:20:42,018 Node[0] Epoch[1] Batch [7500-7520]	Speed: 2283.11 samples/sec	accuracy=0.060156
+2022-05-11 10:20:43,141 Node[0] Epoch[1] Batch [7520-7540]	Speed: 2278.81 samples/sec	accuracy=0.063281
+2022-05-11 10:20:44,263 Node[0] Epoch[1] Batch [7540-7560]	Speed: 2281.46 samples/sec	accuracy=0.075000
+2022-05-11 10:20:45,375 Node[0] Epoch[1] Batch [7560-7580]	Speed: 2301.99 samples/sec	accuracy=0.081250
+2022-05-11 10:20:46,494 Node[0] Epoch[1] Batch [7580-7600]	Speed: 2287.59 samples/sec	accuracy=0.082031
+2022-05-11 10:20:47,610 Node[0] Epoch[1] Batch [7600-7620]	Speed: 2293.70 samples/sec	accuracy=0.063281
+2022-05-11 10:20:48,728 Node[0] Epoch[1] Batch [7620-7640]	Speed: 2291.11 samples/sec	accuracy=0.072656
+2022-05-11 10:20:49,847 Node[0] Epoch[1] Batch [7640-7660]	Speed: 2287.54 samples/sec	accuracy=0.071875
+2022-05-11 10:20:50,965 Node[0] Epoch[1] Batch [7660-7680]	Speed: 2289.81 samples/sec	accuracy=0.074219
+2022-05-11 10:20:52,086 Node[0] Epoch[1] Batch [7680-7700]	Speed: 2283.03 samples/sec	accuracy=0.085938
+2022-05-11 10:20:53,205 Node[0] Epoch[1] Batch [7700-7720]	Speed: 2288.09 samples/sec	accuracy=0.070312
+2022-05-11 10:20:54,323 Node[0] Epoch[1] Batch [7720-7740]	Speed: 2290.22 samples/sec	accuracy=0.060156
+2022-05-11 10:20:55,443 Node[0] Epoch[1] Batch [7740-7760]	Speed: 2285.59 samples/sec	accuracy=0.083594
+2022-05-11 10:20:56,563 Node[0] Epoch[1] Batch [7760-7780]	Speed: 2285.60 samples/sec	accuracy=0.067187
+2022-05-11 10:20:57,679 Node[0] Epoch[1] Batch [7780-7800]	Speed: 2294.56 samples/sec	accuracy=0.067969
+2022-05-11 10:20:58,796 Node[0] Epoch[1] Batch [7800-7820]	Speed: 2290.47 samples/sec	accuracy=0.073438
+2022-05-11 10:20:59,916 Node[0] Epoch[1] Batch [7820-7840]	Speed: 2285.97 samples/sec	accuracy=0.081250
+2022-05-11 10:21:01,036 Node[0] Epoch[1] Batch [7840-7860]	Speed: 2285.90 samples/sec	accuracy=0.087500
+2022-05-11 10:21:02,155 Node[0] Epoch[1] Batch [7860-7880]	Speed: 2287.78 samples/sec	accuracy=0.076563
+2022-05-11 10:21:03,277 Node[0] Epoch[1] Batch [7880-7900]	Speed: 2282.65 samples/sec	accuracy=0.076563
+2022-05-11 10:21:04,396 Node[0] Epoch[1] Batch [7900-7920]	Speed: 2286.82 samples/sec	accuracy=0.081250
+2022-05-11 10:21:05,515 Node[0] Epoch[1] Batch [7920-7940]	Speed: 2287.11 samples/sec	accuracy=0.079687
+2022-05-11 10:21:06,636 Node[0] Epoch[1] Batch [7940-7960]	Speed: 2284.45 samples/sec	accuracy=0.071094
+2022-05-11 10:21:07,759 Node[0] Epoch[1] Batch [7960-7980]	Speed: 2280.39 samples/sec	accuracy=0.082031
+2022-05-11 10:21:08,879 Node[0] Epoch[1] Batch [7980-8000]	Speed: 2284.24 samples/sec	accuracy=0.075781
+2022-05-11 10:21:09,999 Node[0] Epoch[1] Batch [8000-8020]	Speed: 2287.09 samples/sec	accuracy=0.096094
+2022-05-11 10:21:11,123 Node[0] Epoch[1] Batch [8020-8040]	Speed: 2276.33 samples/sec	accuracy=0.078125
+2022-05-11 10:21:12,243 Node[0] Epoch[1] Batch [8040-8060]	Speed: 2287.21 samples/sec	accuracy=0.075781
+2022-05-11 10:21:13,360 Node[0] Epoch[1] Batch [8060-8080]	Speed: 2291.95 samples/sec	accuracy=0.077344
+2022-05-11 10:21:14,484 Node[0] Epoch[1] Batch [8080-8100]	Speed: 2276.54 samples/sec	accuracy=0.077344
+2022-05-11 10:21:15,604 Node[0] Epoch[1] Batch [8100-8120]	Speed: 2285.69 samples/sec	accuracy=0.083594
+2022-05-11 10:21:16,722 Node[0] Epoch[1] Batch [8120-8140]	Speed: 2289.42 samples/sec	accuracy=0.075000
+2022-05-11 10:21:17,839 Node[0] Epoch[1] Batch [8140-8160]	Speed: 2292.13 samples/sec	accuracy=0.079687
+2022-05-11 10:21:18,958 Node[0] Epoch[1] Batch [8160-8180]	Speed: 2288.48 samples/sec	accuracy=0.073438
+2022-05-11 10:21:20,080 Node[0] Epoch[1] Batch [8180-8200]	Speed: 2282.05 samples/sec	accuracy=0.074219
+2022-05-11 10:21:21,192 Node[0] Epoch[1] Batch [8200-8220]	Speed: 2301.78 samples/sec	accuracy=0.073438
+2022-05-11 10:21:22,308 Node[0] Epoch[1] Batch [8220-8240]	Speed: 2292.72 samples/sec	accuracy=0.092969
+2022-05-11 10:21:23,419 Node[0] Epoch[1] Batch [8240-8260]	Speed: 2304.74 samples/sec	accuracy=0.075000
+2022-05-11 10:21:24,537 Node[0] Epoch[1] Batch [8260-8280]	Speed: 2290.07 samples/sec	accuracy=0.074219
+2022-05-11 10:21:25,660 Node[0] Epoch[1] Batch [8280-8300]	Speed: 2280.01 samples/sec	accuracy=0.078906
+2022-05-11 10:21:26,774 Node[0] Epoch[1] Batch [8300-8320]	Speed: 2297.48 samples/sec	accuracy=0.089844
+2022-05-11 10:21:27,899 Node[0] Epoch[1] Batch [8320-8340]	Speed: 2274.65 samples/sec	accuracy=0.086719
+2022-05-11 10:21:29,011 Node[0] Epoch[1] Batch [8340-8360]	Speed: 2302.08 samples/sec	accuracy=0.086719
+2022-05-11 10:21:30,129 Node[0] Epoch[1] Batch [8360-8380]	Speed: 2291.65 samples/sec	accuracy=0.076563
+2022-05-11 10:21:31,245 Node[0] Epoch[1] Batch [8380-8400]	Speed: 2293.54 samples/sec	accuracy=0.085156
+2022-05-11 10:21:32,365 Node[0] Epoch[1] Batch [8400-8420]	Speed: 2284.40 samples/sec	accuracy=0.089063
+2022-05-11 10:21:33,486 Node[0] Epoch[1] Batch [8420-8440]	Speed: 2285.41 samples/sec	accuracy=0.085156
+2022-05-11 10:21:34,603 Node[0] Epoch[1] Batch [8440-8460]	Speed: 2291.93 samples/sec	accuracy=0.088281
+2022-05-11 10:21:35,723 Node[0] Epoch[1] Batch [8460-8480]	Speed: 2285.70 samples/sec	accuracy=0.085156
+2022-05-11 10:21:36,842 Node[0] Epoch[1] Batch [8480-8500]	Speed: 2287.05 samples/sec	accuracy=0.089063
+2022-05-11 10:21:37,959 Node[0] Epoch[1] Batch [8500-8520]	Speed: 2291.08 samples/sec	accuracy=0.090625
+2022-05-11 10:21:39,085 Node[0] Epoch[1] Batch [8520-8540]	Speed: 2273.85 samples/sec	accuracy=0.089844
+2022-05-11 10:21:40,198 Node[0] Epoch[1] Batch [8540-8560]	Speed: 2301.02 samples/sec	accuracy=0.089844
+2022-05-11 10:21:41,322 Node[0] Epoch[1] Batch [8560-8580]	Speed: 2276.43 samples/sec	accuracy=0.081250
+2022-05-11 10:21:42,442 Node[0] Epoch[1] Batch [8580-8600]	Speed: 2285.73 samples/sec	accuracy=0.085156
+2022-05-11 10:21:43,563 Node[0] Epoch[1] Batch [8600-8620]	Speed: 2283.55 samples/sec	accuracy=0.085938
+2022-05-11 10:21:44,683 Node[0] Epoch[1] Batch [8620-8640]	Speed: 2286.35 samples/sec	accuracy=0.095312
+2022-05-11 10:21:45,804 Node[0] Epoch[1] Batch [8640-8660]	Speed: 2284.07 samples/sec	accuracy=0.075000
+2022-05-11 10:21:46,943 Node[0] Epoch[1] Batch [8660-8680]	Speed: 2246.41 samples/sec	accuracy=0.072656
+2022-05-11 10:21:48,067 Node[0] Epoch[1] Batch [8680-8700]	Speed: 2279.30 samples/sec	accuracy=0.080469
+2022-05-11 10:21:49,185 Node[0] Epoch[1] Batch [8700-8720]	Speed: 2289.60 samples/sec	accuracy=0.083594
+2022-05-11 10:21:50,303 Node[0] Epoch[1] Batch [8720-8740]	Speed: 2289.51 samples/sec	accuracy=0.082812
+2022-05-11 10:21:51,420 Node[0] Epoch[1] Batch [8740-8760]	Speed: 2290.73 samples/sec	accuracy=0.086719
+2022-05-11 10:21:52,536 Node[0] Epoch[1] Batch [8760-8780]	Speed: 2294.12 samples/sec	accuracy=0.084375
+2022-05-11 10:21:53,658 Node[0] Epoch[1] Batch [8780-8800]	Speed: 2282.46 samples/sec	accuracy=0.070312
+2022-05-11 10:21:54,776 Node[0] Epoch[1] Batch [8800-8820]	Speed: 2290.09 samples/sec	accuracy=0.092969
+2022-05-11 10:21:55,895 Node[0] Epoch[1] Batch [8820-8840]	Speed: 2286.30 samples/sec	accuracy=0.103906
+2022-05-11 10:21:57,017 Node[0] Epoch[1] Batch [8840-8860]	Speed: 2282.12 samples/sec	accuracy=0.108594
+2022-05-11 10:21:58,137 Node[0] Epoch[1] Batch [8860-8880]	Speed: 2285.06 samples/sec	accuracy=0.079687
+2022-05-11 10:21:59,258 Node[0] Epoch[1] Batch [8880-8900]	Speed: 2284.03 samples/sec	accuracy=0.083594
+2022-05-11 10:22:00,380 Node[0] Epoch[1] Batch [8900-8920]	Speed: 2282.74 samples/sec	accuracy=0.097656
+2022-05-11 10:22:01,500 Node[0] Epoch[1] Batch [8920-8940]	Speed: 2285.29 samples/sec	accuracy=0.086719
+2022-05-11 10:22:02,619 Node[0] Epoch[1] Batch [8940-8960]	Speed: 2287.40 samples/sec	accuracy=0.090625
+2022-05-11 10:22:03,729 Node[0] Epoch[1] Batch [8960-8980]	Speed: 2307.11 samples/sec	accuracy=0.094531
+2022-05-11 10:22:04,847 Node[0] Epoch[1] Batch [8980-9000]	Speed: 2289.46 samples/sec	accuracy=0.101562
+2022-05-11 10:22:06,885 Node[0] Epoch[1] Batch [9000-9020]	Speed: 1256.06 samples/sec	accuracy=0.096875
+2022-05-11 10:22:08,007 Node[0] Epoch[1] Batch [9020-9040]	Speed: 2282.74 samples/sec	accuracy=0.089844
+2022-05-11 10:22:09,125 Node[0] Epoch[1] Batch [9040-9060]	Speed: 2288.45 samples/sec	accuracy=0.099219
+2022-05-11 10:22:10,244 Node[0] Epoch[1] Batch [9060-9080]	Speed: 2288.64 samples/sec	accuracy=0.085156
+2022-05-11 10:22:11,361 Node[0] Epoch[1] Batch [9080-9100]	Speed: 2290.57 samples/sec	accuracy=0.095312
+2022-05-11 10:22:12,482 Node[0] Epoch[1] Batch [9100-9120]	Speed: 2283.92 samples/sec	accuracy=0.088281
+2022-05-11 10:22:13,595 Node[0] Epoch[1] Batch [9120-9140]	Speed: 2301.21 samples/sec	accuracy=0.091406
+2022-05-11 10:22:14,722 Node[0] Epoch[1] Batch [9140-9160]	Speed: 2270.79 samples/sec	accuracy=0.075781
+2022-05-11 10:22:15,844 Node[0] Epoch[1] Batch [9160-9180]	Speed: 2282.16 samples/sec	accuracy=0.101562
+2022-05-11 10:22:16,966 Node[0] Epoch[1] Batch [9180-9200]	Speed: 2281.05 samples/sec	accuracy=0.100000
+2022-05-11 10:22:18,087 Node[0] Epoch[1] Batch [9200-9220]	Speed: 2284.27 samples/sec	accuracy=0.092188
+2022-05-11 10:22:19,209 Node[0] Epoch[1] Batch [9220-9240]	Speed: 2280.33 samples/sec	accuracy=0.102344
+2022-05-11 10:22:20,328 Node[0] Epoch[1] Batch [9240-9260]	Speed: 2288.15 samples/sec	accuracy=0.077344
+2022-05-11 10:22:21,452 Node[0] Epoch[1] Batch [9260-9280]	Speed: 2277.79 samples/sec	accuracy=0.092969
+2022-05-11 10:22:22,576 Node[0] Epoch[1] Batch [9280-9300]	Speed: 2277.27 samples/sec	accuracy=0.086719
+2022-05-11 10:22:23,697 Node[0] Epoch[1] Batch [9300-9320]	Speed: 2285.21 samples/sec	accuracy=0.092969
+2022-05-11 10:22:24,817 Node[0] Epoch[1] Batch [9320-9340]	Speed: 2285.38 samples/sec	accuracy=0.096094
+2022-05-11 10:22:25,938 Node[0] Epoch[1] Batch [9340-9360]	Speed: 2283.46 samples/sec	accuracy=0.100000
+2022-05-11 10:22:27,058 Node[0] Epoch[1] Batch [9360-9380]	Speed: 2284.52 samples/sec	accuracy=0.096094
+2022-05-11 10:22:28,179 Node[0] Epoch[1] Batch [9380-9400]	Speed: 2285.17 samples/sec	accuracy=0.094531
+2022-05-11 10:22:29,299 Node[0] Epoch[1] Batch [9400-9420]	Speed: 2285.27 samples/sec	accuracy=0.099219
+2022-05-11 10:22:30,418 Node[0] Epoch[1] Batch [9420-9440]	Speed: 2287.81 samples/sec	accuracy=0.088281
+2022-05-11 10:22:31,538 Node[0] Epoch[1] Batch [9440-9460]	Speed: 2286.49 samples/sec	accuracy=0.095312
+2022-05-11 10:22:32,657 Node[0] Epoch[1] Batch [9460-9480]	Speed: 2287.63 samples/sec	accuracy=0.088281
+2022-05-11 10:22:33,778 Node[0] Epoch[1] Batch [9480-9500]	Speed: 2283.35 samples/sec	accuracy=0.095312
+2022-05-11 10:22:34,899 Node[0] Epoch[1] Batch [9500-9520]	Speed: 2283.88 samples/sec	accuracy=0.084375
+2022-05-11 10:22:36,020 Node[0] Epoch[1] Batch [9520-9540]	Speed: 2282.52 samples/sec	accuracy=0.089063
+2022-05-11 10:22:37,141 Node[0] Epoch[1] Batch [9540-9560]	Speed: 2283.38 samples/sec	accuracy=0.094531
+2022-05-11 10:22:38,260 Node[0] Epoch[1] Batch [9560-9580]	Speed: 2287.87 samples/sec	accuracy=0.103906
+2022-05-11 10:22:39,376 Node[0] Epoch[1] Batch [9580-9600]	Speed: 2294.88 samples/sec	accuracy=0.091406
+2022-05-11 10:22:40,492 Node[0] Epoch[1] Batch [9600-9620]	Speed: 2292.71 samples/sec	accuracy=0.078906
+2022-05-11 10:22:41,611 Node[0] Epoch[1] Batch [9620-9640]	Speed: 2287.65 samples/sec	accuracy=0.096094
+2022-05-11 10:22:42,735 Node[0] Epoch[1] Batch [9640-9660]	Speed: 2277.98 samples/sec	accuracy=0.094531
+2022-05-11 10:22:43,858 Node[0] Epoch[1] Batch [9660-9680]	Speed: 2279.66 samples/sec	accuracy=0.090625
+2022-05-11 10:22:44,974 Node[0] Epoch[1] Batch [9680-9700]	Speed: 2294.88 samples/sec	accuracy=0.107031
+2022-05-11 10:22:46,093 Node[0] Epoch[1] Batch [9700-9720]	Speed: 2287.01 samples/sec	accuracy=0.092188
+2022-05-11 10:22:47,218 Node[0] Epoch[1] Batch [9720-9740]	Speed: 2276.76 samples/sec	accuracy=0.107031
+2022-05-11 10:22:48,340 Node[0] Epoch[1] Batch [9740-9760]	Speed: 2280.57 samples/sec	accuracy=0.093750
+2022-05-11 10:22:49,462 Node[0] Epoch[1] Batch [9760-9780]	Speed: 2282.32 samples/sec	accuracy=0.099219
+2022-05-11 10:22:50,585 Node[0] Epoch[1] Batch [9780-9800]	Speed: 2279.50 samples/sec	accuracy=0.085938
+2022-05-11 10:22:51,705 Node[0] Epoch[1] Batch [9800-9820]	Speed: 2285.41 samples/sec	accuracy=0.094531
+2022-05-11 10:22:52,826 Node[0] Epoch[1] Batch [9820-9840]	Speed: 2282.60 samples/sec	accuracy=0.098437
+2022-05-11 10:22:53,945 Node[0] Epoch[1] Batch [9840-9860]	Speed: 2288.53 samples/sec	accuracy=0.092969
+2022-05-11 10:22:55,065 Node[0] Epoch[1] Batch [9860-9880]	Speed: 2286.49 samples/sec	accuracy=0.101562
+2022-05-11 10:22:56,184 Node[0] Epoch[1] Batch [9880-9900]	Speed: 2286.73 samples/sec	accuracy=0.086719
+2022-05-11 10:22:57,304 Node[0] Epoch[1] Batch [9900-9920]	Speed: 2286.35 samples/sec	accuracy=0.103125
+2022-05-11 10:22:58,423 Node[0] Epoch[1] Batch [9920-9940]	Speed: 2286.77 samples/sec	accuracy=0.087500
+2022-05-11 10:22:59,543 Node[0] Epoch[1] Batch [9940-9960]	Speed: 2285.76 samples/sec	accuracy=0.099219
+2022-05-11 10:23:00,661 Node[0] Epoch[1] Batch [9960-9980]	Speed: 2291.38 samples/sec	accuracy=0.078906
+2022-05-11 10:23:01,779 Node[0] Epoch[1] Batch [9980-10000]	Speed: 2288.52 samples/sec	accuracy=0.100781
+:::MLLOG {"namespace": "", "time_ms": 1652264582281, "event_type": "INTERVAL_END", "key": "epoch_stop", "value": null, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 984, "epoch_num": 2}}
+2022-05-11 10:23:02,282 Node[0] Epoch[1] Time cost=560.500
+:::MLLOG {"namespace": "", "time_ms": 1652264582282, "event_type": "POINT_IN_TIME", "key": "tracked_stats", "value": {"imgs_sec": 2285.7592885200424}, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1000, "step": 2}}
+:::MLLOG {"namespace": "", "time_ms": 1652264582283, "event_type": "POINT_IN_TIME", "key": "throughput", "value": 2285.7592885200424, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1003}}
+:::MLLOG {"namespace": "", "time_ms": 1652264582283, "event_type": "INTERVAL_END", "key": "run_stop", "value": null, "metadata": {"file": "/workspace/image_classification/common/fit.py", "lineno": 1082, "status": "aborted"}}
+/usr/local/lib/python3.8/dist-packages/nvidia/dali/plugin/mxnet.py:85: Warning: Please do not use `fill_last_batch` and use `last_batch_policy` instead.
+  _DaliBaseIterator.__init__(self,
+ENDING TIMING RUN AT 2022-05-11 10:23:09 AM
+RESULT,IMAGE_CLASSIFICATION,,1161,,2022-05-11 10:03:48 AM
