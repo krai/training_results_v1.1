@@ -941,6 +941,12 @@ def mlperf_fit(self, args, train_data,
                     data_batch.label[0].copyto(dummy_label[0])
                 graph_wrapper.graph_replay(0, hvd.local_rank(), [dummy_data[0], dummy_label[0]], output_arr)
             
+            # Update accuracy, len(data_batch) == 1, so we can hard code it with index 0
+            if isinstance(data_batch, list):
+                self.update_metric(eval_metric, data_batch[0].label)
+            elif hasattr(data_batch, 'label'):
+                self.update_metric(eval_metric, data_batch.label[0])
+
             try:
                 if nbatch % 2 == 0:
                     # pre fetch next batch
@@ -1326,8 +1332,6 @@ def fit(args, kv, model, initializer, data_loader, devs, arg_params, aux_params,
     dummy_eval_data = SyntheticDataIter(args.num_classes, (args.batch_size, 224, 224, 4), 1, np.float32, args.input_layout)
     res = model.score(dummy_eval_data, validation_metric)
     mx.ndarray.waitall()
-    res = model.score(dummy_eval_data, validation_metric)
-    mx.ndarray.waitall()
 
     # data iterators
 
@@ -1354,6 +1358,7 @@ def fit(args, kv, model, initializer, data_loader, devs, arg_params, aux_params,
                             num_epoch=args.num_epochs,
                             eval_data=val,
                             eval_metric=eval_metrics,
+                            validation_metric=validation_metric,
                             kvstore=kv,
                             optimizer=opt,
                             optimizer_params=optimizer_params,
