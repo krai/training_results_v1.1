@@ -811,11 +811,11 @@ def prepare_model_and_optimizer(args, device, stream):
             if prev is not None and (prev.data_ptr() + prev.numel() * prev.element_size() != p.data_ptr()):
                 p_offset = ((p_offset + 63) // 64) * 64
             prev = p
-        for i in range(24):
-            size_tmp = model.bert_model_segment.bert.encoder.layer[i].attention.self.Wqkv.size()
-            model.bert_model_segment.bert.encoder.layer[i].attention.self.Wqkv.set_(source=param_storage, storage_offset=buffer_w_offsets[i], size=size_tmp)
-            size_tmp = model.bert_model_segment.bert.encoder.layer[i].attention.self.Bqkv.size()
-            model.bert_model_segment.bert.encoder.layer[i].attention.self.Bqkv.set_(source=param_storage, storage_offset=buffer_b_offsets[i], size=size_tmp)
+        # for i in range(24):
+        #     size_tmp = model.bert_model_segment.bert.encoder.layer[i].attention.self.Wqkv.size()
+        #     model.bert_model_segment.bert.encoder.layer[i].attention.self.Wqkv.set_(source=param_storage, storage_offset=buffer_w_offsets[i], size=size_tmp)
+        #     size_tmp = model.bert_model_segment.bert.encoder.layer[i].attention.self.Bqkv.size()
+        #     model.bert_model_segment.bert.encoder.layer[i].attention.self.Bqkv.set_(source=param_storage, storage_offset=buffer_b_offsets[i], size=size_tmp)
         model.load_state_dict(checkpoint_remapped, strict=True)
 #        loss, _, _ = model(*batch_gpu_placeholder)
 #        optimizer._lazy_init_stage1()

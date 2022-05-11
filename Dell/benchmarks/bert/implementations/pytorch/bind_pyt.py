@@ -93,7 +93,7 @@ def main():
 
     processes = []
 
-    all_cores = torch.arange(0, 96)
+    all_cores = torch.arange(0, 48)
     even_cores, odd_cores = all_cores[::2].tolist(), all_cores[1::2].tolist()
     #cpu_ranges = torch.vstack((even_cores, odd_cores))
 
